@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://q772sl7sx1ey"]
+
+[ext_resource type="Script" path="res://scripts/player_character.gd" id="1_dbouk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_uevmy"]
+radius = 18.0278
+
+[node name="Node2D" type="Node2D"]
+
+[node name="PlayerCharacter" type="CharacterBody2D" parent="."]
+script = ExtResource("1_dbouk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCharacter"]
+shape = SubResource("CircleShape2D_uevmy")
+
+[node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]
