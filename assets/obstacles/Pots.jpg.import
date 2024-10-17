@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ueklhiffcjfq"
-path="res://.godot/imported/Pots.jpg-34397473f399cb2b4d41deb7ef7c1a64.ctex"
+path="res://.godot/imported/Pots.jpg-6229aca206bb8f440dba8e08092059ae.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Pots.jpg"
-dest_files=["res://.godot/imported/Pots.jpg-34397473f399cb2b4d41deb7ef7c1a64.ctex"]
+source_file="res://assets/obstacles/Pots.jpg"
+dest_files=["res://.godot/imported/Pots.jpg-6229aca206bb8f440dba8e08092059ae.ctex"]
 
 [params]
 

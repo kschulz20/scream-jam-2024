@@ -3,10 +3,11 @@ extends CharacterBody2D
 @export var move_speed :float = 1600.0
 
 var is_mouse_input = false
+signal cane_attack
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
+	pass
 	
 func _input(event: InputEvent) -> void:
 	# determine aiming input device
@@ -15,6 +16,9 @@ func _input(event: InputEvent) -> void:
 	if event is InputEventJoypadMotion:
 		is_mouse_input = false
 
+func _process(delta: float) -> void:
+	if (Input.is_action_pressed("cane_attack")):
+		cane_attack.emit()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -38,9 +42,10 @@ func _physics_process(delta: float) -> void:
 		print("mouse aim: " + str(aim_dir))
 	else:
 		print("controller aim: " + str(aim_dir))
+		
+	
 	# handle movement
 	velocity = move_speed * delta * vel_dir;
 	move_and_slide()
-	print(position)
 	
 	# TODO: do something with aim direction

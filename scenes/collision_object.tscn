@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://camp2whnrfja4"]
 
-[ext_resource type="Texture2D" uid="uid://ueklhiffcjfq" path="res://assets/Pots.jpg" id="1_rxfuk"]
+[ext_resource type="Texture2D" uid="uid://ueklhiffcjfq" path="res://assets/obstacles/Pots.jpg" id="1_rxfuk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bryll"]
 animations = [{

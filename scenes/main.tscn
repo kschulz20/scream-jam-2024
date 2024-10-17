@@ -5,8 +5,8 @@
 
 [node name="Main" type="Node"]
 
-[node name="PlayerCharacter" parent="." instance=ExtResource("1_wblpv")]
-move_speed = 20000.0
-
 [node name="RigidBody2D" parent="." instance=ExtResource("2_ek2il")]
 position = Vector2(338, 172)
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("1_wblpv")]
+move_speed = 20000.0
