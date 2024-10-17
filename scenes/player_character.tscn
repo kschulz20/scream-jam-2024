@@ -1,16 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://q772sl7sx1ey"]
+[gd_scene load_steps=5 format=3 uid="uid://q772sl7sx1ey"]
 
 [ext_resource type="Script" path="res://scripts/player_character.gd" id="1_dbouk"]
+[ext_resource type="Texture2D" uid="uid://bj7l42iw8ukom" path="res://assets/icon.svg" id="2_e0fkm"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_uevmy"]
-radius = 18.0278
+[sub_resource type="SpriteFrames" id="SpriteFrames_110rp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_e0fkm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
-[node name="Node2D" type="Node2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7b6ya"]
+size = Vector2(126, 127)
 
-[node name="PlayerCharacter" type="CharacterBody2D" parent="."]
+[node name="PlayerCharacter" type="CharacterBody2D"]
+position = Vector2(576, 324)
 script = ExtResource("1_dbouk")
+metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerCharacter"]
-shape = SubResource("CircleShape2D_uevmy")
+[node name="Camera2D" type="Camera2D" parent="."]
 
-[node name="Camera2D" type="Camera2D" parent="PlayerCharacter"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_110rp")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_7b6ya")

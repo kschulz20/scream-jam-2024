@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var move_speed :float = 2.0
+@export var move_speed :float = 1600.0
 
 var is_mouse_input = false
 
@@ -41,5 +41,6 @@ func _physics_process(delta: float) -> void:
 	# handle movement
 	velocity = move_speed * delta * vel_dir;
 	move_and_slide()
+	print(position)
 	
 	# TODO: do something with aim direction

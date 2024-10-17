@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://camp2whnrfja4"]
+
+[ext_resource type="Texture2D" uid="uid://ueklhiffcjfq" path="res://assets/Pots.jpg" id="1_rxfuk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bryll"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_rxfuk")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hkjk7"]
+size = Vector2(225, 225)
+
+[node name="RigidBody2D" type="RigidBody2D"]
+position = Vector2(-1, 1)
+collision_mask = 0
+gravity_scale = 0.0
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_bryll")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_hkjk7")

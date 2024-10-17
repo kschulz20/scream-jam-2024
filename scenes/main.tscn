@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://owpaq245hh2l"]
+
+[ext_resource type="PackedScene" uid="uid://q772sl7sx1ey" path="res://scenes/player_character.tscn" id="1_wblpv"]
+[ext_resource type="PackedScene" uid="uid://camp2whnrfja4" path="res://scenes/collision_object.tscn" id="2_ek2il"]
+
+[node name="Main" type="Node"]
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("1_wblpv")]
+move_speed = 20000.0
+
+[node name="RigidBody2D" parent="." instance=ExtResource("2_ek2il")]
+position = Vector2(338, 172)
