@@ -1,12 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://owpaq245hh2l"]
 
 [ext_resource type="PackedScene" uid="uid://q772sl7sx1ey" path="res://scenes/player_character.tscn" id="1_wblpv"]
-[ext_resource type="PackedScene" uid="uid://camp2whnrfja4" path="res://scenes/collision_object.tscn" id="2_ek2il"]
+[ext_resource type="PackedScene" uid="uid://3k1pyy0hhb37" path="res://scenes/enemy.tscn" id="2_gv313"]
 
 [node name="Main" type="Node"]
 
-[node name="RigidBody2D" parent="." instance=ExtResource("2_ek2il")]
-position = Vector2(338, 172)
-
 [node name="PlayerCharacter" parent="." instance=ExtResource("1_wblpv")]
 move_speed = 20000.0
+
+[node name="Enemy" parent="." instance=ExtResource("2_gv313")]

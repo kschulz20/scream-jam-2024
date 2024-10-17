@@ -39,9 +39,11 @@ func _physics_process(delta: float) -> void:
 		).normalized()
 	
 	if is_mouse_input:
-		print("mouse aim: " + str(aim_dir))
+		# print("mouse aim: " + str(aim_dir))
+		pass
 	else:
-		print("controller aim: " + str(aim_dir))
+		# print("controller aim: " + str(aim_dir))
+		pass
 		
 	
 	# handle movement

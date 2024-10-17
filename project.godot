@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 project/assembly_name="scream_jam"
 
+[global_group]
+
+hurtbox=""
+
 [input]
 
 move_up={

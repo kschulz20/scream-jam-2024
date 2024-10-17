@@ -13,7 +13,6 @@ func _process(delta: float) -> void:
 	if (not _animation_player.is_playing()):
 		cane_sprite.visible = false
 
-
 func _on_player_character_cane_attack() -> void:
 	cane_sprite.visible = true
 	_animation_player.play("cane_attack")
