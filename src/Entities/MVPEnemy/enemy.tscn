@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://3k1pyy0hhb37"]
 
-[ext_resource type="Script" path="res://scripts/enemy.gd" id="1_mapvi"]
-[ext_resource type="Script" path="res://scripts/enemy_hurt_box.gd" id="2_lytl6"]
+[ext_resource type="Script" path="res://src/Entities/MVPEnemy/enemy.gd" id="1_mapvi"]
+[ext_resource type="Script" path="res://src/Entities/MVPEnemy/enemy_hurt_box.gd" id="2_lytl6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_afj5g"]
 size = Vector2(120, 118)
