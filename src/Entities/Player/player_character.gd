@@ -64,6 +64,7 @@ func _process(delta: float) -> void:
 		var cane_hitbox_vector: Vector2 = Vector2.from_angle(mouse_angle)
 		# multiply by some amount here
 		cane_attack.emit(cane_hitbox_vector)
+		
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
