@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://fegoub4ev2q4"]
+
+[ext_resource type="Script" path="res://src/Level/enemy_spawner.gd" id="1_0tnkk"]
+[ext_resource type="Texture2D" uid="uid://cm7u7icysp3s0" path="res://assets/level/spawn.png" id="2_ftotr"]
+
+[sub_resource type="GDScript" id="GDScript_jdynu"]
+script/source = "extends Timer
+
+signal spawn_enemy()
+
+func _on_timeout() -> void:
+	spawn_enemy.emit()
+"
+
+[node name="EnemySpawner" type="Node2D"]
+script = ExtResource("1_0tnkk")
+metadata/_edit_group_ = true
+
+[node name="SpawnTimer" type="Timer" parent="."]
+script = SubResource("GDScript_jdynu")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("2_ftotr")
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
