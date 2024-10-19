@@ -26,9 +26,9 @@ func _physics_process(delta: float) -> void:
 
 # Enemy hurtbox made contact with weapon - do damage
 func _on_area_entered(area: Area2D) -> void:
-	print("Enemy received: " + area.hitbox_type)
-	if (weapon_hitbox_types.has(area.hitbox_type)):
-		health -= area.get_damage()
-		if (health <= 0):
-			queue_free()
-	# TODO: HEY KYLER MAKE THE PROJECTILE DO DAMAGE
+	if ("hitbox_type" in area):
+		print("Enemy received: " + area.hitbox_type)
+		if (weapon_hitbox_types.has(area.hitbox_type)):
+			health -= area.get_damage()
+			if (health <= 0):
+				queue_free()
