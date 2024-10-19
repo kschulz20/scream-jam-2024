@@ -6,7 +6,7 @@ extends CharacterBody2D
 
 @onready var player_character = get_tree().root.find_child("PlayerCharacter", true, false)
 
-var weapon_hitbox_names = ["CaneHitbox"]
+var weapon_hitbox_names = ["CaneHitbox", "PlayerProjectile"]
 
 func _ready() -> void:
 	# For testing/debug
@@ -30,3 +30,4 @@ func _on_area_entered(area: Area2D) -> void:
 		health -= area.get_damage()
 		if (health <= 0):
 			queue_free()
+	# TODO: HEY KYLER MAKE THE PROJECTILE DO DAMAGE

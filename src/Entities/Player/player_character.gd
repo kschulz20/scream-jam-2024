@@ -2,6 +2,14 @@ extends CharacterBody2D
 
 @export var move_speed :float = 1600.0
 
+@export var projectile :PackedScene = load(
+	"res://src/Entities/Projectile/projectile.tscn"
+)
+
+@export var fire_rate :float = 1.5
+var last_projectile_fired :float = 0.0
+var is_firing = false
+
 var is_mouse_input = false
 signal cane_attack(cane_hitbox_vector: Vector2)
 
@@ -64,6 +72,19 @@ func _process(delta: float) -> void:
 		var cane_hitbox_vector: Vector2 = Vector2.from_angle(mouse_angle)
 		# multiply by some amount here
 		cane_attack.emit(cane_hitbox_vector)
+	elif (Input.is_action_just_pressed("range_attack")):
+		is_firing = true
+		last_projectile_fired = 0.0
+	if (Input.is_action_just_released("range_attack")):
+		is_firing = false
+	
+	if is_firing:
+		if last_projectile_fired <= 0.0:
+			print(last_projectile_fired)
+			shoot(aim_dir)
+			last_projectile_fired += 1.0 / (fire_rate)
+		else:
+			last_projectile_fired -= delta
 		
 	pass
 
@@ -80,3 +101,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	# TODO: do something with aim direction
+	
+func shoot(dir: Vector2):
+	var new_projectile = projectile.instantiate()
+	new_projectile.heading = dir
+	new_projectile.position = self.position + (dir * 1.2)
+	owner.add_child(new_projectile)
