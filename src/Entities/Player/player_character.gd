@@ -102,6 +102,7 @@ func _physics_process(delta: float) -> void:
 	
 func shoot(dir: Vector2):
 	var new_projectile = projectile.instantiate()
+	print(new_projectile.name)
 	new_projectile.heading = dir
 	new_projectile.position = self.position + (dir * 1.2)
 	owner.add_child(new_projectile)

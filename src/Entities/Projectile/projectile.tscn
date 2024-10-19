@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_0jaxg"]
 radius = 18.5714
 
-[node name="Projectile" type="Area2D"]
+[node name="PlayerProjectile" type="Area2D"]
 position = Vector2(570, 451)
 script = ExtResource("1_lxhs6")
 
