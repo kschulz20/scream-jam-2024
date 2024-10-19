@@ -74,19 +74,17 @@ func _process(delta: float) -> void:
 		cane_attack.emit(cane_hitbox_vector)
 	elif (Input.is_action_just_pressed("range_attack")):
 		is_firing = true
-		last_projectile_fired = 0.0
 	if (Input.is_action_just_released("range_attack")):
 		is_firing = false
-	
+		
+	var has_fired = false
 	if is_firing:
 		if last_projectile_fired <= 0.0:
-			print(last_projectile_fired)
 			shoot(aim_dir)
-			last_projectile_fired += 1.0 / (fire_rate)
-		else:
-			last_projectile_fired -= delta
-		
-	pass
+			last_projectile_fired = 1.0 / (fire_rate)
+			has_fired = true
+	if not has_fired:
+		last_projectile_fired -= delta
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
