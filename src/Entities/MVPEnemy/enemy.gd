@@ -1,6 +1,11 @@
 extends CharacterBody2D
 
-var move_speed = 5.0
+@export var move_speed = 35
+@export var debug_enable_move = true
+
+func _ready() -> void:
+	# For testing/debug
+	set_physics_process(debug_enable_move)	
 
 func take_damage():
 	print("OW!!!!")
