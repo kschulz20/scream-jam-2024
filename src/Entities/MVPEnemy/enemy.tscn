@@ -1,16 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://3k1pyy0hhb37"]
+[gd_scene load_steps=4 format=3 uid="uid://3k1pyy0hhb37"]
 
 [ext_resource type="Script" path="res://src/Entities/MVPEnemy/enemy.gd" id="1_mapvi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_afj5g"]
 size = Vector2(120, 118)
-
-[sub_resource type="GDScript" id="GDScript_vai2j"]
-script/source = "extends Area2D
-
-func _on_area_entered(area: Area2D) -> void:
-	queue_free()
-"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ppcmg"]
 
@@ -25,7 +18,6 @@ shape = SubResource("RectangleShape2D_afj5g")
 
 [node name="EnemyHurtBox" type="Area2D" parent="."]
 scale = Vector2(1.5, 1.5)
-script = SubResource("GDScript_vai2j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtBox"]
 scale = Vector2(4, 4)

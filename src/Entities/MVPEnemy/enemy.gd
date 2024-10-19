@@ -6,6 +6,8 @@ extends CharacterBody2D
 
 @onready var player_character = get_tree().root.find_child("PlayerCharacter", true, false)
 
+var weapon_hitbox_names = ["CaneHitbox"]
+
 func _ready() -> void:
 	# For testing/debug
 	set_physics_process(debug_enable_move)
@@ -24,8 +26,7 @@ func _physics_process(delta: float) -> void:
 
 # Enemy hurtbox made contact with weapon - do damage
 func _on_area_entered(area: Area2D) -> void:
-	
-	health -= area.get_damage()
-	
-	if (health <= 0):
-		queue_free()
+	if (weapon_hitbox_names.has(area.name)):
+		health -= area.get_damage()
+		if (health <= 0):
+			queue_free()
