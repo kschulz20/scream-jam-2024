@@ -11,7 +11,6 @@ extends CharacterBody2D
 
 @onready var player_character = get_tree().root.find_child("PlayerCharacter", true, false)
 
-var hitbox_type = "MVPEnemyHitbox"
 var team = ""
 
 func _ready() -> void:
