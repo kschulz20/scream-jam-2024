@@ -12,6 +12,7 @@ extends CharacterBody2D
 @onready var player_character = get_tree().root.find_child("PlayerCharacter", true, false)
 
 var hitbox_type = "MVPEnemyHitbox"
+var team = ""
 
 func _ready() -> void:
 	# For testing/debug
@@ -32,9 +33,6 @@ func _physics_process(delta: float) -> void:
 		#if obj == player:
 			#print("gotcha!")
 
-func get_damage():
-	return damage
-
 func shoot(damage :int):
 	var new_projectile = projectile.instantiate()
 	new_projectile.heading = (player_character.position - position)
@@ -42,3 +40,9 @@ func shoot(damage :int):
 	new_projectile.team = "enemy"
 	new_projectile.damage = damage
 	add_sibling(new_projectile)
+
+
+func _on_enemy_hitbox_body_entered(body: Node2D) -> void:
+	if body.get("health"):
+		if (body.is_in_group("player")):
+			body.health -= damage

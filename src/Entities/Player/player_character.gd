@@ -118,11 +118,3 @@ func shoot(dir: Vector2):
 	new_projectile.position = self.position + (dir * 1.2)
 	new_projectile.team = "player"
 	owner.add_child(new_projectile)
-
-
-func _on_player_hurtbox_area_entered(area: Area2D) -> void:
-	# Make sure hitbox_type exists and that player is not hitting themselves
-	if (("hitbox_type" in area) and not (player_hitboxes_to_ignore.has(area.hitbox_type))):
-		print("Player received: " + area.hitbox_type)
-		if (enemy_hitbox_types.has(area.hitbox_type)):
-			health -= area.get_damage()
