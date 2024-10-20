@@ -13,9 +13,8 @@ const PUMPKIN_MOVE_SPEED = 20
 @export var debug_enable_move = true
 @export var damage = 1
 
-@export var projectile :PackedScene = load(
-	"res://src/Entities/Projectile/projectile.tscn"
-)
+@export var projectile: PackedScene
+@export var projectile_frequency = 650
 
 @onready var player_character = get_tree().root.find_child("PlayerCharacter", true, false)
 
@@ -28,7 +27,8 @@ func _ready() -> void:
 	add_to_group("enemy")
 	
 func _process(_delta: float) -> void:
-	pass
+	if (randi() % projectile_frequency == 0):
+		shoot(damage)
 	
 func _physics_process(delta: float) -> void:
 	velocity = move_speed * delta * (player_character.position - position)

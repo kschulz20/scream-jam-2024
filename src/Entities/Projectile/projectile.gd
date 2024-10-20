@@ -8,9 +8,6 @@ var team = ""
 func _physics_process(delta: float) -> void:
 	position += heading.normalized() * delta * speed
 
-func get_damage():
-	return damage
-
 func _on_body_entered(body: Node2D) -> void:
 	if body.get("health"):
 		if (body.is_in_group("enemy")):

@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://3k1pyy0hhb37"]
+[gd_scene load_steps=8 format=3 uid="uid://3k1pyy0hhb37"]
 
 [ext_resource type="Script" path="res://src/Entities/MVPEnemy/enemy.gd" id="1_mapvi"]
+[ext_resource type="PackedScene" uid="uid://dbmgqr3qpj6ed" path="res://src/Entities/MVPEnemy/enemy_projectile.tscn" id="2_4c2fc"]
 [ext_resource type="AudioStream" uid="uid://ck34ioocuv7jk" path="res://assets/enemies/enemy_death.wav" id="2_x8f3o"]
 [ext_resource type="AudioStream" uid="uid://c1hrga6n5t1w1" path="res://assets/enemies/enemy_hurt.wav" id="3_jllp4"]
 
@@ -16,6 +17,7 @@ size = Vector2(30.75, 30.5)
 [node name="Enemy" type="CharacterBody2D"]
 position = Vector2(960, 324)
 script = ExtResource("1_mapvi")
+projectile = ExtResource("2_4c2fc")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
