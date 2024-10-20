@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://owpaq245hh2l"]
+[gd_scene load_steps=7 format=3 uid="uid://owpaq245hh2l"]
 
-[ext_resource type="PackedScene" uid="uid://q772sl7sx1ey" path="res://src/Entities/Player/player_character.tscn" id="1_wblpv"]
-[ext_resource type="PackedScene" uid="uid://3k1pyy0hhb37" path="res://src/Entities/MVPEnemy/enemy.tscn" id="2_gv313"]
+[ext_resource type="Script" path="res://src/main.gd" id="1_l3wco"]
+[ext_resource type="PackedScene" uid="uid://q772sl7sx1ey" path="res://src/entities/Player/player_character.tscn" id="1_wblpv"]
+[ext_resource type="PackedScene" uid="uid://3k1pyy0hhb37" path="res://src/entities/MVPEnemy/enemy.tscn" id="2_gv313"]
 [ext_resource type="Texture2D" uid="uid://bj7l42iw8ukom" path="res://assets/player/icon.svg" id="3_lyv6t"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wj6wx"]
@@ -13,6 +14,7 @@ radius = 60.0
 height = 120.0
 
 [node name="Main" type="Node"]
+script = ExtResource("1_l3wco")
 
 [node name="PlayerCharacter" parent="." instance=ExtResource("1_wblpv")]
 unique_name_in_owner = true
@@ -28,3 +30,19 @@ texture = ExtResource("3_lyv6t")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Enemy"]
 shape = SubResource("CapsuleShape2D_tpfj1")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Status" type="Label" parent="UI"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = 961.0
+offset_top = 617.0
+offset_right = 1104.0
+offset_bottom = 620.0

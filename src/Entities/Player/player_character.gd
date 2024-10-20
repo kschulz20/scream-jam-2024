@@ -19,10 +19,7 @@ func _ready() -> void:
 	
 func _input(event: InputEvent) -> void:
 	# determine aiming input device
-	if event is InputEventMouseMotion:
-		is_mouse_input = true
-	if event is InputEventJoypadMotion:
-		is_mouse_input = false
+	is_mouse_input = event is InputEventMouseMotion
 		#
 			## aim input
 	#var aim_dir :Vector2 = Vector2(0.0, 0.0)
@@ -78,18 +75,18 @@ func _process(delta: float) -> void:
 		is_firing = false
 		
 	var has_fired = false
-	if is_firing:
-		if last_projectile_fired <= 0.0:
-			shoot(aim_dir)
-			last_projectile_fired = 1.0 / (fire_rate)
-			has_fired = true
+	if is_firing and last_projectile_fired <= 0.0:
+		shoot(aim_dir)
+		last_projectile_fired = 1.0 / (fire_rate)
+		has_fired = true
+		
 	if not has_fired:
 		last_projectile_fired -= delta
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
 	# movement input
-	var vel_dir :Vector2 = Input.get_vector(
+	var vel_dir : Vector2 = Input.get_vector(
 		"move_left", "move_right",
 		"move_up", "move_down"
 	).normalized()
