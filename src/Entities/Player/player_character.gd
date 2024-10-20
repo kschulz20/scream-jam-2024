@@ -10,6 +10,7 @@ extends CharacterBody2D
 var last_projectile_fired :float = 0.0
 var is_firing = false
 
+var player_hitboxes_to_ignore = ["PlayerProjectile", "CaneHitbox"]
 var enemy_hitbox_types = ["MVPEnemyHitbox"]
 
 var player_died = false
@@ -120,8 +121,8 @@ func shoot(dir: Vector2):
 
 
 func _on_player_hurtbox_area_entered(area: Area2D) -> void:
-	print("hallo")
-	if ("hitbox_type" in area):
+	# Make sure hitbox_type exists and that player is not hitting themselves
+	if (("hitbox_type" in area) and not (player_hitboxes_to_ignore.has(area.hitbox_type))):
 		print("Player received: " + area.hitbox_type)
 		if (enemy_hitbox_types.has(area.hitbox_type)):
 			health -= area.get_damage()

@@ -12,16 +12,11 @@ extends CharacterBody2D
 @onready var player_character = get_tree().root.find_child("PlayerCharacter", true, false)
 
 var hitbox_type = "MVPEnemyHitbox"
-var weapon_hitbox_types = ["CaneHitbox"]
-
 
 func _ready() -> void:
 	# For testing/debug
 	set_physics_process(debug_enable_move)
 	add_to_group("enemy")
-
-func take_damage():
-	print("OW!!!!")
 	
 func _process(_delta: float) -> void:
 	# shoot(0)
@@ -39,13 +34,6 @@ func _physics_process(delta: float) -> void:
 
 func get_damage():
 	return damage
-
-# Enemy hurtbox made contact with weapon - do damage
-#func _on_area_entered(area: Area2D) -> void:
-	#if ("hitbox_type" in area):
-		##print("Enemy received: " + area.hitbox_type)
-		#if (weapon_hitbox_types.has(area.hitbox_type)):
-			#health -= area.get_damage()
 
 func shoot(damage :int):
 	var new_projectile = projectile.instantiate()

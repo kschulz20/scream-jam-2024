@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://bj7l42iw8ukom" path="res://assets/player/icon.svg" id="2_e0fkm"]
 [ext_resource type="Texture2D" uid="uid://cdg1yemgdqn2p" path="res://assets/cane/spritesheet.png" id="3_hlhok"]
 [ext_resource type="Script" path="res://src/Entities/Player/cane.gd" id="3_mjehx"]
-[ext_resource type="Script" path="res://src/Entities/Player/cane_hitbox.gd" id="5_y65h3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_110rp"]
 animations = [{
@@ -19,6 +18,16 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7b6ya"]
 size = Vector2(126, 127)
+
+[sub_resource type="GDScript" id="GDScript_v4jsx"]
+script/source = "extends Area2D
+
+@export var damage = 2
+var hitbox_type = \"CaneHitbox\"
+
+func get_damage():
+	return damage
+"
 
 [sub_resource type="Animation" id="Animation_rw050"]
 length = 0.001
@@ -109,7 +118,7 @@ texture = ExtResource("3_hlhok")
 hframes = 3
 
 [node name="CaneHitbox" type="Area2D" parent="Cane/CaneSprite"]
-script = ExtResource("5_y65h3")
+script = SubResource("GDScript_v4jsx")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Cane/CaneSprite/CaneHitbox"]
 rotation = 1.5708
