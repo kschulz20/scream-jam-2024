@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var move_speed :float = 1600.0
-
+@export var health = 1
 @export var projectile :PackedScene = load(
 	"res://src/Entities/Projectile/projectile.tscn"
 )
@@ -9,6 +9,10 @@ extends CharacterBody2D
 @export var fire_rate :float = 1.5
 var last_projectile_fired :float = 0.0
 var is_firing = false
+
+var enemy_hitbox_types = ["MVPEnemyHitbox"]
+
+var player_died = false
 
 var is_mouse_input = false
 signal cane_attack(cane_hitbox_vector: Vector2)
@@ -88,17 +92,18 @@ func _process(delta: float) -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
-	# movement input
-	var vel_dir :Vector2 = Input.get_vector(
-		"move_left", "move_right",
-		"move_up", "move_down"
-	).normalized()
-	
-	# handle movement
-	velocity = move_speed * delta * vel_dir;
-	move_and_slide()
-	
-	# TODO: do something with aim direction
+	if (not player_died):
+		# movement input
+		var vel_dir :Vector2 = Input.get_vector(
+			"move_left", "move_right",
+			"move_up", "move_down"
+		).normalized()
+		
+		# handle movement
+		velocity = move_speed * delta * vel_dir;
+		move_and_slide()
+		
+		# TODO: do something with aim direction
 	
 func shoot(dir: Vector2):
 	var new_projectile = projectile.instantiate()
@@ -106,3 +111,15 @@ func shoot(dir: Vector2):
 	new_projectile.heading = dir
 	new_projectile.position = self.position + (dir * 1.2)
 	owner.add_child(new_projectile)
+
+
+func _on_player_hurtbox_area_entered(area: Area2D) -> void:
+	if ("hitbox_type" in area):
+		print("Player received: " + area.hitbox_type)
+		if (enemy_hitbox_types.has(area.hitbox_type)):
+			health -= area.get_damage()
+			if (health <= 0):
+				hide() # Player disappears after being hit.
+				# Must be deferred as we can't change physics properties on a physics callback.
+				$CollisionShape2D.set_deferred("disabled", true)
+				player_died = true

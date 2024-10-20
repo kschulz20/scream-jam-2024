@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://q772sl7sx1ey"]
+[gd_scene load_steps=12 format=3 uid="uid://q772sl7sx1ey"]
 
 [ext_resource type="Script" path="res://src/Entities/Player/player_character.gd" id="1_dbouk"]
 [ext_resource type="Texture2D" uid="uid://bj7l42iw8ukom" path="res://assets/player/icon.svg" id="2_e0fkm"]
@@ -81,6 +81,9 @@ _data = {
 "cane_attack": SubResource("Animation_258y5")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8bbn1"]
+size = Vector2(134, 137)
+
 [node name="PlayerCharacter" type="CharacterBody2D"]
 position = Vector2(578, 324)
 script = ExtResource("1_dbouk")
@@ -118,5 +121,12 @@ libraries = {
 "": SubResource("AnimationLibrary_bg5ji")
 }
 
+[node name="PlayerHurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerHurtbox"]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_8bbn1")
+
 [connection signal="cane_attack" from="." to="Cane" method="_on_player_character_cane_attack"]
 [connection signal="area_entered" from="Cane/CaneSprite/CaneHitbox" to="Cane" method="_on_cane_hitbox_area_entered"]
+[connection signal="area_entered" from="PlayerHurtbox" to="." method="_on_player_hurtbox_area_entered"]

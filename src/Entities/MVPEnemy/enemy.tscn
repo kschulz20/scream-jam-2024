@@ -1,11 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://3k1pyy0hhb37"]
+[gd_scene load_steps=6 format=3 uid="uid://3k1pyy0hhb37"]
 
 [ext_resource type="Script" path="res://src/Entities/MVPEnemy/enemy.gd" id="1_mapvi"]
+[ext_resource type="Script" path="res://src/Entities/MVPEnemy/enemy_hitbox.gd" id="2_6spg6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_afj5g"]
 size = Vector2(120, 118)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ppcmg"]
+size = Vector2(20.6667, 20.3333)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7sa3o"]
+size = Vector2(30.75, 30.5)
 
 [node name="Enemy" type="CharacterBody2D"]
 position = Vector2(960, 324)
@@ -13,7 +18,6 @@ script = ExtResource("1_mapvi")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_afj5g")
 
 [node name="EnemyHurtBox" type="Area2D" parent="."]
@@ -22,5 +26,13 @@ scale = Vector2(1.5, 1.5)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtBox"]
 scale = Vector2(4, 4)
 shape = SubResource("RectangleShape2D_ppcmg")
+
+[node name="EnemyHitbox" type="Area2D" parent="."]
+script = ExtResource("2_6spg6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitbox"]
+position = Vector2(-0.5, 0)
+scale = Vector2(4, 4)
+shape = SubResource("RectangleShape2D_7sa3o")
 
 [connection signal="area_entered" from="EnemyHurtBox" to="." method="_on_area_entered"]

@@ -1,13 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://owpaq245hh2l"]
+[gd_scene load_steps=6 format=3 uid="uid://owpaq245hh2l"]
 
 [ext_resource type="PackedScene" uid="uid://q772sl7sx1ey" path="res://src/Entities/Player/player_character.tscn" id="1_wblpv"]
 [ext_resource type="PackedScene" uid="uid://3k1pyy0hhb37" path="res://src/Entities/MVPEnemy/enemy.tscn" id="2_gv313"]
 [ext_resource type="Texture2D" uid="uid://bj7l42iw8ukom" path="res://assets/player/icon.svg" id="3_lyv6t"]
 [ext_resource type="Script" path="res://src/spawn_manager.gd" id="4_k52d0"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wj6wx"]
-radius = 60.0
-height = 122.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_tpfj1"]
 radius = 60.0
@@ -18,9 +14,6 @@ height = 120.0
 [node name="PlayerCharacter" parent="." instance=ExtResource("1_wblpv")]
 unique_name_in_owner = true
 move_speed = 20000.0
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="PlayerCharacter"]
-shape = SubResource("CapsuleShape2D_wj6wx")
 
 [node name="Enemy" parent="." instance=ExtResource("2_gv313")]
 
