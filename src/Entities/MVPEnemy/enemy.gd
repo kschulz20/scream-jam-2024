@@ -1,8 +1,16 @@
 extends CharacterBody2D
 
-@export var move_speed = 35
+const GHOST_HEALTH = 2
+const PUMPKIN_HEALTH = 4
+
+const GHOST_MOVE_SPEED = 35
+const PUMPKIN_MOVE_SPEED = 20
+
+# By default, enemy is a ghost
+@export var health = GHOST_HEALTH
+@export var move_speed = GHOST_MOVE_SPEED
+
 @export var debug_enable_move = true
-@export var health = 2
 @export var damage = 1
 
 @export var projectile :PackedScene = load(
@@ -12,6 +20,7 @@ extends CharacterBody2D
 @onready var player_character = get_tree().root.find_child("PlayerCharacter", true, false)
 
 var team = ""
+
 
 func _ready() -> void:
 	# For testing/debug
@@ -31,6 +40,17 @@ func _physics_process(delta: float) -> void:
 		#var obj := collision.get_collider()
 		#if obj == player:
 			#print("gotcha!")
+			
+func set_type(type: String):
+	match type:
+		"pumpkin":
+			health = PUMPKIN_HEALTH
+			move_speed = PUMPKIN_MOVE_SPEED
+		"ghost":
+			health = GHOST_HEALTH
+			move_speed = GHOST_MOVE_SPEED
+		_:
+			print("Enemy didn't receive a type upon instantiation")
 
 func shoot(damage :int):
 	var new_projectile = projectile.instantiate()

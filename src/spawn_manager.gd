@@ -18,5 +18,11 @@ func _process(delta: float) -> void:
 func _on_enemy_spawn_timer_timeout() -> void:
 	for enemy_spawn in enemy_spawn_list:
 		var enemy = enemy_scene.instantiate()
+		
+		if (randi() % 2 == 0):
+			enemy.set_type("pumpkin")
+		else:
+			enemy.set_type("ghost")
+		
 		enemy.position = enemy_spawn.position
 		enemies_node.add_child(enemy)
