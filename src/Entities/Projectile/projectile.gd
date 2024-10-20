@@ -13,6 +13,6 @@ func get_damage():
 
 func _on_body_entered(body: Node2D) -> void:
 	if body.get("health"):
-		if (not body.is_in_group(team) and not body.is_in_group("player")):
-			body.health -= damage
+		if (body.is_in_group("enemy")):
+			body.take_damage(damage)
 			self.queue_free()

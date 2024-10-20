@@ -28,9 +28,7 @@ func _ready() -> void:
 	add_to_group("enemy")
 	
 func _process(_delta: float) -> void:
-	# shoot(0)
-	if (health <= 0):
-		call_deferred("queue_free")
+	pass
 	
 func _physics_process(delta: float) -> void:
 	velocity = move_speed * delta * (player_character.position - position)
@@ -65,3 +63,9 @@ func _on_enemy_hitbox_body_entered(body: Node2D) -> void:
 	if body.get("health"):
 		if (body.is_in_group("player")):
 			SignalBus.player_take_damage.emit(damage)
+
+func take_damage(damage_amount):
+	health -= damage_amount
+	
+	if (health <= 0):
+		call_deferred("queue_free")

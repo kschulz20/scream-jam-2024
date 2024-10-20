@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://3k1pyy0hhb37"]
+[gd_scene load_steps=6 format=3 uid="uid://3k1pyy0hhb37"]
 
 [ext_resource type="Script" path="res://src/Entities/MVPEnemy/enemy.gd" id="1_mapvi"]
+[ext_resource type="AudioStream" uid="uid://ck34ioocuv7jk" path="res://assets/enemies/enemy_death.wav" id="2_x8f3o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_afj5g"]
 size = Vector2(120, 118)
@@ -32,6 +33,9 @@ shape = SubResource("RectangleShape2D_ppcmg")
 position = Vector2(-0.5, 0)
 scale = Vector2(4, 4)
 shape = SubResource("RectangleShape2D_7sa3o")
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_x8f3o")
 
 [connection signal="area_entered" from="EnemyHurtBox" to="." method="_on_area_entered"]
 [connection signal="body_entered" from="EnemyHitbox" to="." method="_on_enemy_hitbox_body_entered"]

@@ -29,5 +29,5 @@ func _on_player_character_cane_attack(cane_hitbox_vector: Vector2) -> void:
 
 func _on_cane_hitbox_body_entered(body: Node2D) -> void:
 	if body.get("health"):
-		if (not body.is_in_group(team) and not body.is_in_group("player")):
-			body.health -= damage
+		if (body.is_in_group("enemy")):
+			body.take_damage(damage)
