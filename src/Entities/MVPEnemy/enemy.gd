@@ -64,4 +64,4 @@ func shoot(damage :int):
 func _on_enemy_hitbox_body_entered(body: Node2D) -> void:
 	if body.get("health"):
 		if (body.is_in_group("player")):
-			body.health -= damage
+			SignalBus.player_take_damage.emit(damage)

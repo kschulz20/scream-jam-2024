@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var move_speed :float = 1600.0
-@export var health = 1
+@export var health = 2
 @export var projectile :PackedScene = load(
 	"res://src/Entities/Projectile/projectile.tscn"
 )
@@ -20,7 +20,7 @@ signal cane_attack(cane_hitbox_vector: Vector2)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	SignalBus.player_take_damage.connect(_on_player_take_damage)
 	
 func _input(event: InputEvent) -> void:
 	# determine aiming input device
@@ -118,3 +118,11 @@ func shoot(dir: Vector2):
 	new_projectile.position = self.position + (dir * 1.2)
 	new_projectile.team = "player"
 	owner.add_child(new_projectile)
+
+func _on_player_take_damage(damage_amount):
+	health -= damage_amount
+	
+	if (health <= 0):
+		$DeathSound.play()
+	else:
+		$HurtSound.play()
