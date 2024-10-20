@@ -15,7 +15,7 @@ height = 120.0
 unique_name_in_owner = true
 move_speed = 20000.0
 
-[node name="Enemy" parent="." instance=ExtResource("2_gv313")]
+[node name="Enemy" parent="." groups=["enemy"] instance=ExtResource("2_gv313")]
 
 [node name="Sprite2D" type="Sprite2D" parent="Enemy"]
 texture = ExtResource("3_lyv6t")

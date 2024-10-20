@@ -22,6 +22,8 @@ project/assembly_name="scream_jam"
 [global_group]
 
 hurtbox=""
+player=""
+enemy=""
 
 [input]
 

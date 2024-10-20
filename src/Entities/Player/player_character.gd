@@ -53,6 +53,12 @@ func _input(event: InputEvent) -> void:
 		#cane_attack.emit(cane_hitbox_vector)
 
 func _process(delta: float) -> void:
+	# check for death
+	if (health <= 0):
+		hide() # Player disappears after being hit.
+		# Must be deferred as we can't change physics properties on a physics callback.
+		$CollisionShape2D.set_deferred("disabled", true)
+		player_died = true
 	# aim input
 	var aim_dir :Vector2 = Vector2(0.0, 0.0)
 	if is_mouse_input:
@@ -107,9 +113,9 @@ func _physics_process(delta: float) -> void:
 	
 func shoot(dir: Vector2):
 	var new_projectile = projectile.instantiate()
-	print(new_projectile.name)
 	new_projectile.heading = dir
 	new_projectile.position = self.position + (dir * 1.2)
+	new_projectile.team = "player"
 	owner.add_child(new_projectile)
 
 
@@ -118,8 +124,3 @@ func _on_player_hurtbox_area_entered(area: Area2D) -> void:
 		print("Player received: " + area.hitbox_type)
 		if (enemy_hitbox_types.has(area.hitbox_type)):
 			health -= area.get_damage()
-			if (health <= 0):
-				hide() # Player disappears after being hit.
-				# Must be deferred as we can't change physics properties on a physics callback.
-				$CollisionShape2D.set_deferred("disabled", true)
-				player_died = true

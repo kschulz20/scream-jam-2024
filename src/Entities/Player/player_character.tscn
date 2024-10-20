@@ -84,7 +84,7 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8bbn1"]
 size = Vector2(134, 137)
 
-[node name="PlayerCharacter" type="CharacterBody2D"]
+[node name="PlayerCharacter" type="CharacterBody2D" groups=["player"]]
 position = Vector2(578, 324)
 script = ExtResource("1_dbouk")
 metadata/_edit_group_ = true
