@@ -67,5 +67,14 @@ func _on_enemy_hitbox_body_entered(body: Node2D) -> void:
 func take_damage(damage_amount):
 	health -= damage_amount
 	
-	if (health <= 0):
-		call_deferred("queue_free")
+	if (health > 0):
+		$HurtSound.play()
+	elif (health <= 0):
+		# hide()
+		$CollisionShape2D.set_deferred("disabled", true)
+		$EnemyHurtBox/CollisionShape2D.set_deferred("disabled", true)
+		$EnemyHitbox/CollisionShape2D.set_deferred("disabled", true)
+		$DeathSound.play()
+
+func _on_death_sound_finished() -> void:
+	call_deferred("queue_free")

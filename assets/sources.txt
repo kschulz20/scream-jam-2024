@@ -1,2 +1,2 @@
 "cane_miss" from minifantasy dungeon sfx
-"player_death", "player_hurt", "enemy_death" from 8 Bit SFX Pack
+"player_death", "player_hurt", "enemy_death", "enemy_hurt" from 8 Bit SFX Pack
