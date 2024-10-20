@@ -1,7 +1,7 @@
 extends Node
 
 # Define components.
-@onready var g_StatusElement : Label = get_node("UI/Status")
+@onready var g_StatusElement: Label = $Status
 
 func _ready() -> void:
 	SignalBus.update_status_text.connect(on_status_update)
@@ -12,4 +12,5 @@ func _process(delta: float) -> void:
 
 
 func on_status_update(new_text):
-	print(new_text)
+	if (g_StatusElement != null):
+		g_StatusElement.text = new_text

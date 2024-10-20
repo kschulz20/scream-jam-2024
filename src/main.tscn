@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://owpaq245hh2l"]
+[gd_scene load_steps=8 format=3 uid="uid://owpaq245hh2l"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1_l3wco"]
-[ext_resource type="PackedScene" uid="uid://q772sl7sx1ey" path="res://src/entities/Player/player_character.tscn" id="1_wblpv"]
-[ext_resource type="PackedScene" uid="uid://3k1pyy0hhb37" path="res://src/entities/MVPEnemy/enemy.tscn" id="2_gv313"]
+[ext_resource type="PackedScene" uid="uid://q772sl7sx1ey" path="res://src/Entities/Player/player_character.tscn" id="1_wblpv"]
+[ext_resource type="PackedScene" uid="uid://3k1pyy0hhb37" path="res://src/Entities/MVPEnemy/enemy.tscn" id="2_gv313"]
 [ext_resource type="Texture2D" uid="uid://bj7l42iw8ukom" path="res://assets/player/icon.svg" id="3_lyv6t"]
+[ext_resource type="Script" path="res://src/util/managers/ui.gd" id="5_xw0j3"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wj6wx"]
 radius = 60.0
@@ -36,6 +37,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("5_xw0j3")
 
 [node name="Status" type="Label" parent="UI"]
 layout_mode = 1
@@ -46,3 +48,4 @@ offset_left = 961.0
 offset_top = 617.0
 offset_right = 1104.0
 offset_bottom = 620.0
+text = "sadasdasjkdlas"
