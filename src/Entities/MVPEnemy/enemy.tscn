@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://3k1pyy0hhb37"]
 
-[ext_resource type="Script" path="res://src/Entities/MVPEnemy/enemy.gd" id="1_mapvi"]
+[ext_resource type="Script" path="res://src/entities/MVPEnemy/enemy.gd" id="1_mapvi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_afj5g"]
 size = Vector2(120, 118)

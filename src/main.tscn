@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://owpaq245hh2l"]
+[gd_scene load_steps=7 format=3 uid="uid://owpaq245hh2l"]
 
-[ext_resource type="PackedScene" uid="uid://q772sl7sx1ey" path="res://src/Entities/Player/player_character.tscn" id="1_wblpv"]
-[ext_resource type="PackedScene" uid="uid://3k1pyy0hhb37" path="res://src/Entities/MVPEnemy/enemy.tscn" id="2_gv313"]
+[ext_resource type="PackedScene" uid="uid://q772sl7sx1ey" path="res://src/entities/Player/player_character.tscn" id="1_wblpv"]
+[ext_resource type="PackedScene" uid="uid://3k1pyy0hhb37" path="res://src/entities/MVPEnemy/enemy.tscn" id="2_gv313"]
 [ext_resource type="Texture2D" uid="uid://bj7l42iw8ukom" path="res://assets/player/icon.svg" id="3_lyv6t"]
+[ext_resource type="Script" path="res://src/util/ui/ui_control.gd" id="4_fyxkt"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wj6wx"]
 radius = 60.0
@@ -28,3 +29,23 @@ texture = ExtResource("3_lyv6t")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Enemy"]
 shape = SubResource("CapsuleShape2D_tpfj1")
+
+[node name="UI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 980.0
+offset_top = 593.0
+offset_right = 1140.0
+offset_bottom = 630.0
+script = ExtResource("4_fyxkt")
+
+[node name="FaintCounter" type="Label" parent="UI"]
+layout_mode = 0
+offset_left = 946.0
+offset_top = 611.0
+offset_right = 1141.0
+offset_bottom = 638.0
+
+[node name="Timers" type="Node" parent="."]
+
+[node name="Enemy" type="Timer" parent="Timers"]
