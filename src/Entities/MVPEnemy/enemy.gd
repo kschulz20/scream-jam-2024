@@ -41,11 +41,11 @@ func get_damage():
 	return damage
 
 # Enemy hurtbox made contact with weapon - do damage
-func _on_area_entered(area: Area2D) -> void:
-	if ("hitbox_type" in area):
-		#print("Enemy received: " + area.hitbox_type)
-		if (weapon_hitbox_types.has(area.hitbox_type)):
-			health -= area.get_damage()
+#func _on_area_entered(area: Area2D) -> void:
+	#if ("hitbox_type" in area):
+		##print("Enemy received: " + area.hitbox_type)
+		#if (weapon_hitbox_types.has(area.hitbox_type)):
+			#health -= area.get_damage()
 
 func shoot(damage :int):
 	var new_projectile = projectile.instantiate()

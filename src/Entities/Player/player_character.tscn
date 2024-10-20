@@ -128,5 +128,5 @@ position = Vector2(0, 0.5)
 shape = SubResource("RectangleShape2D_8bbn1")
 
 [connection signal="cane_attack" from="." to="Cane" method="_on_player_character_cane_attack"]
-[connection signal="area_entered" from="Cane/CaneSprite/CaneHitbox" to="Cane" method="_on_cane_hitbox_area_entered"]
+[connection signal="body_entered" from="Cane/CaneSprite/CaneHitbox" to="Cane" method="_on_cane_hitbox_body_entered"]
 [connection signal="area_entered" from="PlayerHurtbox" to="." method="_on_player_hurtbox_area_entered"]

@@ -120,6 +120,7 @@ func shoot(dir: Vector2):
 
 
 func _on_player_hurtbox_area_entered(area: Area2D) -> void:
+	print("hallo")
 	if ("hitbox_type" in area):
 		print("Player received: " + area.hitbox_type)
 		if (enemy_hitbox_types.has(area.hitbox_type)):
