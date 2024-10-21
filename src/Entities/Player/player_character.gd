@@ -10,6 +10,9 @@ extends CharacterBody2D
 var last_projectile_fired :float = 0.0
 var is_firing = false
 
+@export var melee_rate :float = 1.0
+var last_melee :float = 0.0
+
 var player_hitboxes_to_ignore = ["PlayerProjectile", "CaneHitbox"]
 var enemy_hitbox_types = ["MVPEnemyHitbox"]
 
@@ -85,25 +88,20 @@ func _process(delta: float) -> void:
 	else:
 		# print("controller aim: " + str(aim_dir))
 		pass
-
+	
+	last_melee = clamp(last_melee - delta, 0.0, INF)
+	last_projectile_fired = clamp(last_projectile_fired - delta, 0.0, INF)
 	if (Input.is_action_just_pressed("cane_attack")):
-		var mouse_angle: float = aim_dir.angle()
-		var cane_hitbox_vector: Vector2 = Vector2.from_angle(mouse_angle)
-		# multiply by some amount here
-		cane_attack.emit(cane_hitbox_vector)
+		if last_melee <= 0.0:
+			melee(aim_dir)
+			last_melee = 1.0 / melee_rate
 	elif (Input.is_action_just_pressed("range_attack")):
 		is_firing = true
 	if (Input.is_action_just_released("range_attack")):
 		is_firing = false
-		
-	var has_fired = false
-	if is_firing:
-		if last_projectile_fired <= 0.0:
-			shoot(aim_dir)
-			last_projectile_fired = 1.0 / (fire_rate)
-			has_fired = true
-	if not has_fired:
-		last_projectile_fired -= delta
+	if is_firing and last_projectile_fired <= 0.0:
+		shoot(aim_dir)
+		last_projectile_fired = 1.0 / (fire_rate)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -119,6 +117,12 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		
 		# TODO: do something with aim direction
+		
+func melee(aim_dir :Vector2):
+	var mouse_angle: float = aim_dir.angle()
+	var cane_hitbox_vector: Vector2 = Vector2.from_angle(mouse_angle)
+	# multiply by some amount here
+	cane_attack.emit(cane_hitbox_vector)
 	
 func shoot(dir: Vector2):
 	var new_projectile = projectile.instantiate()
