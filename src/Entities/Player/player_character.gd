@@ -54,11 +54,19 @@ func _input(event: InputEvent) -> void:
 		#cane_attack.emit(cane_hitbox_vector)
 
 func _process(delta: float) -> void:
+	var is_walking = false
+	if (velocity.length() == 0):
+		$AnimatedSprite2D.animation = "idle"
+	if (velocity.length() > 0):
+		$AnimatedSprite2D.animation = "walk"
+		$AnimatedSprite2D.play()
+		$AnimatedSprite2D.flip_h = velocity.x > 0
 	# check for death
 	if (health <= 0):
-		hide() # Player disappears after being hit.
+		# hide() # Player disappears after being hit.
 		# Must be deferred as we can't change physics properties on a physics callback.
 		$CollisionShape2D.set_deferred("disabled", true)
+		$AnimatedSprite2D.animation = "death"
 		player_died = true
 	# aim input
 	var aim_dir :Vector2 = Vector2(0.0, 0.0)

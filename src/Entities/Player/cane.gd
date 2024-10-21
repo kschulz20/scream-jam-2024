@@ -1,6 +1,6 @@
 extends Node2D
 
-@export var CANE_HITBOX_DISTANCE_FROM_PLAYER: float = 170
+@export var CANE_HITBOX_DISTANCE_FROM_PLAYER: float = 10
 @onready var _animation_player = $AnimationPlayer
 @onready var cane_sprite = $CaneSprite
 
