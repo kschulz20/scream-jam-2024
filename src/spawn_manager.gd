@@ -1,6 +1,7 @@
 extends Node
 
-@export var enemy_scene: PackedScene
+@export var mvp_enemy_scene = load("res://src/Entities/MVPEnemy/enemy.tscn")
+@export var ranged_enemy_scene = load("res://src/Entities/RangedEnemy/ranged_enemy.tscn")
 @onready var enemies_node = get_tree().root.find_child("Enemies", true, false)
 var enemy_spawn_list
 
@@ -17,12 +18,16 @@ func _process(delta: float) -> void:
 
 func _on_enemy_spawn_timer_timeout() -> void:
 	for enemy_spawn in enemy_spawn_list:
-		var enemy = enemy_scene.instantiate()
+		var enemy
 		
-		if (randi() % 2 == 0):
-			enemy.set_type("pumpkin")
+		if (randi() % 3 == 0):
+			enemy = ranged_enemy_scene.instantiate()
 		else:
-			enemy.set_type("ghost")
+			enemy = mvp_enemy_scene.instantiate()
+			if (randi() % 2 == 0):
+				enemy.set_type("pumpkin")
+			else:
+				enemy.set_type("ghost")
 		
 		enemy.position = enemy_spawn.position
 		enemies_node.add_child(enemy)

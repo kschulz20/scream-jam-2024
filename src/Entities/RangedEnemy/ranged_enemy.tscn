@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://3k1pyy0hhb37"]
+[gd_scene load_steps=8 format=3 uid="uid://3k1pyy0hhb37"]
 
-[ext_resource type="Script" path="res://src/Entities/MVPEnemy/enemy.gd" id="1_mapvi"]
+[ext_resource type="Script" path="res://src/Entities/RangedEnemy/ranged_enemy.gd" id="1_64dah"]
+[ext_resource type="PackedScene" uid="uid://dbmgqr3qpj6ed" path="res://src/Entities/RangedEnemy/ranged_enemy_projectile.tscn" id="2_3lunk"]
 [ext_resource type="AudioStream" uid="uid://ck34ioocuv7jk" path="res://assets/enemies/enemy_death.wav" id="2_x8f3o"]
 [ext_resource type="AudioStream" uid="uid://c1hrga6n5t1w1" path="res://assets/enemies/enemy_hurt.wav" id="3_jllp4"]
 
@@ -13,24 +14,25 @@ size = Vector2(20.6667, 20.3333)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7sa3o"]
 size = Vector2(30.75, 30.5)
 
-[node name="Enemy" type="CharacterBody2D"]
+[node name="RangedEnemy" type="CharacterBody2D"]
 position = Vector2(960, 324)
-script = ExtResource("1_mapvi")
+script = ExtResource("1_64dah")
+projectile = ExtResource("2_3lunk")
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_afj5g")
 
-[node name="EnemyHurtBox" type="Area2D" parent="."]
+[node name="RangedEnemyHurtBox" type="Area2D" parent="."]
 scale = Vector2(1.5, 1.5)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RangedEnemyHurtBox"]
 scale = Vector2(4, 4)
 shape = SubResource("RectangleShape2D_ppcmg")
 
-[node name="EnemyHitbox" type="Area2D" parent="."]
+[node name="RangedEnemyHitbox" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RangedEnemyHitbox"]
 position = Vector2(-0.5, 0)
 scale = Vector2(4, 4)
 shape = SubResource("RectangleShape2D_7sa3o")
@@ -41,6 +43,6 @@ stream = ExtResource("2_x8f3o")
 [node name="HurtSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_jllp4")
 
-[connection signal="area_entered" from="EnemyHurtBox" to="." method="_on_area_entered"]
-[connection signal="body_entered" from="EnemyHitbox" to="." method="_on_enemy_hitbox_body_entered"]
+[connection signal="area_entered" from="RangedEnemyHurtBox" to="." method="_on_area_entered"]
+[connection signal="body_entered" from="RangedEnemyHitbox" to="." method="_on_enemy_hitbox_body_entered"]
 [connection signal="finished" from="DeathSound" to="." method="_on_death_sound_finished"]

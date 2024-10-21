@@ -13,9 +13,6 @@ const PUMPKIN_MOVE_SPEED = 20
 @export var debug_enable_move = true
 @export var damage = 1
 
-@export var projectile: PackedScene
-@export var projectile_frequency = 650
-
 @onready var player_character = get_tree().root.find_child("PlayerCharacter", true, false)
 
 var team = ""
@@ -25,10 +22,6 @@ func _ready() -> void:
 	# For testing/debug
 	set_physics_process(debug_enable_move)
 	add_to_group("enemy")
-	
-func _process(_delta: float) -> void:
-	if (randi() % projectile_frequency == 0):
-		shoot(damage)
 	
 func _physics_process(delta: float) -> void:
 	velocity = move_speed * delta * (player_character.position - position)
@@ -49,15 +42,6 @@ func set_type(type: String):
 			move_speed = GHOST_MOVE_SPEED
 		_:
 			print("Enemy didn't receive a type upon instantiation")
-
-func shoot(damage :int):
-	var new_projectile = projectile.instantiate()
-	new_projectile.heading = (player_character.position - position)
-	new_projectile.position = position
-	new_projectile.team = "enemy"
-	new_projectile.damage = damage
-	add_sibling(new_projectile)
-
 
 func _on_enemy_hitbox_body_entered(body: Node2D) -> void:
 	if body.get("health"):

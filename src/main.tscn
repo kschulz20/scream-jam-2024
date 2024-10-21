@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://owpaq245hh2l"]
+[gd_scene load_steps=3 format=3 uid="uid://owpaq245hh2l"]
 
 [ext_resource type="PackedScene" uid="uid://q772sl7sx1ey" path="res://src/Entities/Player/player_character.tscn" id="1_wblpv"]
-[ext_resource type="PackedScene" uid="uid://3k1pyy0hhb37" path="res://src/Entities/MVPEnemy/enemy.tscn" id="2_gv313"]
 [ext_resource type="Script" path="res://src/spawn_manager.gd" id="4_k52d0"]
 
 [node name="Main" type="Node"]
@@ -14,7 +13,6 @@ move_speed = 20000.0
 
 [node name="SpawnManager" type="Node" parent="."]
 script = ExtResource("4_k52d0")
-enemy_scene = ExtResource("2_gv313")
 
 [node name="EnemySpawn1" type="Marker2D" parent="SpawnManager"]
 
