@@ -25,6 +25,10 @@ func _ready() -> void:
 	
 func _physics_process(delta: float) -> void:
 	velocity = move_speed * delta * (player_character.position - position)
+	
+	$AnimatedSprite2D.play()
+	$AnimatedSprite2D.flip_h = velocity.x > 0
+	
 	move_and_slide()
 	#for index in get_slide_collision_count():
 		#var collision := get_slide_collision(index)
