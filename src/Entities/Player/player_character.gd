@@ -89,19 +89,20 @@ func _process(delta: float) -> void:
 		# print("controller aim: " + str(aim_dir))
 		pass
 	
-	last_melee = clamp(last_melee - delta, 0.0, INF)
-	last_projectile_fired = clamp(last_projectile_fired - delta, 0.0, INF)
-	if (Input.is_action_just_pressed("cane_attack")):
-		if last_melee <= 0.0:
-			melee(aim_dir)
-			last_melee = 1.0 / melee_rate
-	elif (Input.is_action_just_pressed("range_attack")):
-		is_firing = true
-	if (Input.is_action_just_released("range_attack")):
-		is_firing = false
-	if is_firing and last_projectile_fired <= 0.0:
-		shoot(aim_dir)
-		last_projectile_fired = 1.0 / (fire_rate)
+	if (not player_died):
+		last_melee = clamp(last_melee - delta, 0.0, INF)
+		last_projectile_fired = clamp(last_projectile_fired - delta, 0.0, INF)
+		if (Input.is_action_just_pressed("cane_attack")):
+			if last_melee <= 0.0:
+				melee(aim_dir)
+				last_melee = 1.0 / melee_rate
+		elif (Input.is_action_just_pressed("range_attack")):
+			is_firing = true
+		if (Input.is_action_just_released("range_attack")):
+			is_firing = false
+		if is_firing and last_projectile_fired <= 0.0:
+			shoot(aim_dir)
+			last_projectile_fired = 1.0 / (fire_rate)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:

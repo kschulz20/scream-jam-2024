@@ -3,12 +3,12 @@
 [ext_resource type="Script" path="res://src/Entities/Player/player_character.gd" id="1_dbouk"]
 [ext_resource type="Texture2D" uid="uid://dvh2qysixkw8v" path="res://assets/player/man-death.png" id="2_rjjhn"]
 [ext_resource type="Texture2D" uid="uid://do786uktn8esb" path="res://assets/player/man-idle.png" id="2_yog86"]
-[ext_resource type="Texture2D" uid="uid://cdg1yemgdqn2p" path="res://assets/cane/spritesheet.png" id="3_hlhok"]
 [ext_resource type="Script" path="res://src/Entities/Player/cane.gd" id="3_mjehx"]
 [ext_resource type="Texture2D" uid="uid://ge5gg1fi6o0a" path="res://assets/player/man-walk-apart.png" id="4_iqrfc"]
 [ext_resource type="Texture2D" uid="uid://dux03rs3lyfbl" path="res://assets/player/man-walk-together.png" id="5_7pd5r"]
 [ext_resource type="AudioStream" uid="uid://cnawymajj0yhq" path="res://assets/player/player_death.wav" id="5_ks636"]
 [ext_resource type="AudioStream" uid="uid://uvm32jgjew1u" path="res://assets/player/player_hurt.wav" id="6_jqup1"]
+[ext_resource type="Texture2D" uid="uid://bcjfx3tbae23n" path="res://assets/player/cane-90-spritesheet.png" id="7_f6nj3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_110rp"]
 animations = [{
@@ -72,7 +72,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_258y5"]
 resource_name = "cane_attack"
-length = 0.3
+length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -80,10 +80,10 @@ tracks/0/path = NodePath("CaneSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2]
+"values": [0, 1, 2, 3]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -127,17 +127,17 @@ script = ExtResource("3_mjehx")
 CANE_HITBOX_DISTANCE_FROM_PLAYER = 60.0
 
 [node name="CaneSprite" type="Sprite2D" parent="Cane"]
-position = Vector2(171, -23)
-scale = Vector2(0.35, 0.35)
-texture = ExtResource("3_hlhok")
-hframes = 3
+position = Vector2(180, -23)
+scale = Vector2(1.25, 1.25)
+texture = ExtResource("7_f6nj3")
+hframes = 4
 
 [node name="CaneHitbox" type="Area2D" parent="Cane/CaneSprite"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Cane/CaneSprite/CaneHitbox"]
-position = Vector2(-80, 0)
+position = Vector2(-20, 0)
 rotation = 1.5708
-polygon = PackedVector2Array(0, 0, -85, -265, 85, -265)
+polygon = PackedVector2Array(0, 0, -20, -80, 20, -80)
 disabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Cane"]
