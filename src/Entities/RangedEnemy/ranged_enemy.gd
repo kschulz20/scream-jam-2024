@@ -1,10 +1,11 @@
 extends CharacterBody2D
 
-
+const random_direction_freq = 200
+const random_stop_movement_freq = 100
 @export var health = 2
 @export var move_speed = 30 # 15
-@export var enemy_detection_range = 550
-@export var enemy_firing_range = 350
+@export var enemy_detection_range = 500
+@export var enemy_firing_range = 325
 @export var projectile: PackedScene
 @export var projectile_frequency = 100 #650
 @export var fire_rate: float = 1.25
@@ -16,6 +17,9 @@ var last_projectile_fired: float = 0.0
 var is_firing = false
 var dist_from_player = INF
 var team = ""
+var random_direction = Vector2.ZERO
+var curr_move_speed = null
+var curr_direction = null
 
 
 func _ready() -> void:
@@ -34,11 +38,18 @@ func _process(_delta: float) -> void:
 		last_projectile_fired -= _delta
 	
 func _physics_process(delta: float) -> void:
-	var curr_move_speed = move_speed
 	dist_from_player = player_character.position.distance_to(position)
-	if  dist_from_player > enemy_detection_range or dist_from_player < enemy_firing_range:
+	if dist_from_player > enemy_detection_range:
+		if randi() % random_direction_freq == 0 or random_direction == Vector2.ZERO:
+			curr_move_speed = 20
+			random_direction = Vector2(randi_range(-200,200), randi_range(-200,200))
+		curr_direction = random_direction		
+	elif dist_from_player < enemy_firing_range:
 		curr_move_speed = 0
-	velocity = curr_move_speed * delta * (player_character.position - position)
+	else:
+		curr_move_speed = move_speed
+		curr_direction = (player_character.position - position) 
+	velocity = curr_move_speed * delta * curr_direction
 	$Sprite2D.flip_h = velocity.x > 0
 	move_and_slide()
 
