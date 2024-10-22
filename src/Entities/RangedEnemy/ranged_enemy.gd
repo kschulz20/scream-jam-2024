@@ -2,10 +2,11 @@ extends CharacterBody2D
 
 
 @export var health = 2
-@export var move_speed = 15
-
+@export var move_speed = 30 # 15
+@export var enemy_detection_range = 550
+@export var enemy_firing_range = 350
 @export var projectile: PackedScene
-@export var projectile_frequency = 650
+@export var projectile_frequency = 100 #650
 @export var fire_rate: float = 1.25
 @export var damage = 1
 
@@ -13,7 +14,7 @@ extends CharacterBody2D
 
 var last_projectile_fired: float = 0.0
 var is_firing = false
-
+var dist_from_player = INF
 var team = ""
 
 
@@ -23,7 +24,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	var has_fired = false
 	if last_projectile_fired <= 0.0:
-		if (randi() % projectile_frequency == 0):
+		if (randi() % projectile_frequency == 0) and dist_from_player < enemy_firing_range:
 			shoot(damage)
 			last_projectile_fired = 1.0 / (fire_rate)
 			has_fired = true
@@ -31,7 +32,11 @@ func _process(_delta: float) -> void:
 		last_projectile_fired -= _delta
 	
 func _physics_process(delta: float) -> void:
-	velocity = move_speed * delta * (player_character.position - position)
+	var curr_move_speed = move_speed
+	dist_from_player = player_character.position.distance_to(position)
+	if  dist_from_player > enemy_detection_range or dist_from_player < enemy_firing_range:
+		curr_move_speed = 0
+	velocity = curr_move_speed * delta * (player_character.position - position)
 	move_and_slide()
 
 			

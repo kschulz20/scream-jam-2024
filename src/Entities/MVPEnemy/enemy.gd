@@ -3,28 +3,43 @@ extends CharacterBody2D
 const GHOST_HEALTH = 2
 const PUMPKIN_HEALTH = 4
 
-const GHOST_MOVE_SPEED = 35
+const GHOST_MOVE_SPEED = 40
 const PUMPKIN_MOVE_SPEED = 20
-
+const GHOST_RANGE = 400
+const random_direction_freq = 200
+const random_stop_movement_freq = 100
 # By default, enemy is a ghost
 @export var health = GHOST_HEALTH
 @export var move_speed = GHOST_MOVE_SPEED
-
+@export var enemy_range = GHOST_RANGE
 @export var debug_enable_move = true
 @export var damage = 1
 
 @onready var player_character = get_tree().root.find_child("PlayerCharacter", true, false)
 
 var team = ""
-
-
+var random_direction = Vector2.ZERO
+var curr_move_speed = null
+var curr_direction = null
 func _ready() -> void:
 	# For testing/debug
 	set_physics_process(debug_enable_move)
 	add_to_group("enemy")
 	
 func _physics_process(delta: float) -> void:
-	velocity = move_speed * delta * (player_character.position - position)
+	# if player position is too far, move in a random direction
+	if player_character.position.distance_to(position) > enemy_range:
+		if randi() % random_direction_freq == 0 or random_direction == Vector2.ZERO:
+			curr_move_speed = 20
+			random_direction = Vector2(randi_range(-200,200), randi_range(-200,200))
+		# ! Uncomment below if you want the enemy to randomly stop moving. !
+		#if randi() % random_stop_movement_freq == 0: 
+			#curr_move_speed = 0
+		curr_direction = random_direction
+	else:
+		curr_move_speed = move_speed
+		curr_direction = (player_character.position - position) 
+	velocity = curr_move_speed * delta * curr_direction
 	
 	$AnimatedSprite2D.play()
 	$AnimatedSprite2D.flip_h = velocity.x > 0
