@@ -17,6 +17,7 @@ const random_stop_movement_freq = 100
 
 @onready var player_character = get_tree().root.find_child("PlayerCharacter", true, false)
 
+var sprite
 var team = ""
 var random_direction = Vector2.ZERO
 var curr_move_speed = null
@@ -41,8 +42,8 @@ func _physics_process(delta: float) -> void:
 		curr_direction = (player_character.position - position) 
 	velocity = curr_move_speed * delta * curr_direction
 	
-	$AnimatedSprite2D.play()
-	$AnimatedSprite2D.flip_h = velocity.x > 0
+	sprite.play()
+	sprite.flip_h = velocity.x > 0
 	
 	move_and_slide()
 	#for index in get_slide_collision_count():
@@ -56,9 +57,17 @@ func set_type(type: String):
 		"pumpkin":
 			health = PUMPKIN_HEALTH
 			move_speed = PUMPKIN_MOVE_SPEED
+			
+			sprite = $PumpkinSprite
+			sprite.visible = true
+			$GhostSprite.visible = false
 		"ghost":
 			health = GHOST_HEALTH
 			move_speed = GHOST_MOVE_SPEED
+			
+			sprite = $GhostSprite
+			sprite.visible = true
+			$PumpkinSprite.visible = false
 		_:
 			print("Enemy didn't receive a type upon instantiation")
 

@@ -1,10 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://3k1pyy0hhb37"]
+[gd_scene load_steps=15 format=3 uid="uid://3k1pyy0hhb37"]
 
 [ext_resource type="Script" path="res://src/Entities/MVPEnemy/enemy.gd" id="1_mapvi"]
 [ext_resource type="Texture2D" uid="uid://dkgh8i28nc8je" path="res://assets/enemies/pumpkin-walk1-scaled.png" id="2_mmpu7"]
 [ext_resource type="AudioStream" uid="uid://ck34ioocuv7jk" path="res://assets/enemies/enemy_death.wav" id="2_x8f3o"]
 [ext_resource type="Texture2D" uid="uid://bju30420bpswo" path="res://assets/enemies/pumpkin-walk-2-scaled.png" id="3_i0cqp"]
 [ext_resource type="AudioStream" uid="uid://c1hrga6n5t1w1" path="res://assets/enemies/enemy_hurt.wav" id="3_jllp4"]
+[ext_resource type="Texture2D" uid="uid://b15pv4qcgxfur" path="res://assets/enemies/ghost_walk_0.png" id="4_rudjk"]
+[ext_resource type="Texture2D" uid="uid://dxi5wsd1a3jgj" path="res://assets/enemies/ghost_walk_1.png" id="5_3y487"]
+[ext_resource type="Texture2D" uid="uid://crbfd3t7yp5nt" path="res://assets/enemies/ghost_walk_2.png" id="6_eyixo"]
+[ext_resource type="Texture2D" uid="uid://dfm46jx6u03ss" path="res://assets/enemies/ghost_walk_3.png" id="7_8mlbj"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8hk1d"]
 animations = [{
@@ -20,39 +24,64 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_3f4dh"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_rudjk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_3y487")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_eyixo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_8mlbj")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_afj5g"]
-size = Vector2(34, 68)
+size = Vector2(41, 68)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ppcmg"]
-size = Vector2(6, 11.6667)
+size = Vector2(7.16667, 11.6667)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7sa3o"]
-size = Vector2(9, 17.5)
+size = Vector2(10.75, 17.5)
 
 [node name="Enemy" type="CharacterBody2D"]
 script = ExtResource("1_mapvi")
 metadata/_edit_group_ = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="PumpkinSprite" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.85, 0.85)
 sprite_frames = SubResource("SpriteFrames_8hk1d")
 
+[node name="GhostSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+sprite_frames = SubResource("SpriteFrames_3f4dh")
+animation = &"walk"
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-3, 1)
+position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_afj5g")
 
 [node name="EnemyHurtBox" type="Area2D" parent="."]
 scale = Vector2(1.5, 1.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHurtBox"]
-position = Vector2(-2, 0.666666)
+position = Vector2(-0.333333, 0)
 scale = Vector2(4, 4)
 shape = SubResource("RectangleShape2D_ppcmg")
 
 [node name="EnemyHitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitbox"]
-position = Vector2(-3, 1)
+position = Vector2(-0.5, 0)
 scale = Vector2(4, 4)
 shape = SubResource("RectangleShape2D_7sa3o")
 

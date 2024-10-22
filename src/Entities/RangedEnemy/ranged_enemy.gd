@@ -45,6 +45,7 @@ func _physics_process(delta: float) -> void:
 			random_direction = Vector2(randi_range(-200,200), randi_range(-200,200))
 		curr_direction = random_direction		
 	elif dist_from_player < enemy_firing_range:
+		curr_direction = (player_character.position - position)
 		curr_move_speed = 0
 	else:
 		curr_move_speed = move_speed
