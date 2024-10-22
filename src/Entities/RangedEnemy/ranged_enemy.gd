@@ -25,6 +25,7 @@ func _process(_delta: float) -> void:
 	var has_fired = false
 	if last_projectile_fired <= 0.0:
 		if (randi() % projectile_frequency == 0):
+			$AnimationPlayer.play("attack")
 			shoot(damage)
 			last_projectile_fired = 1.0 / (fire_rate)
 			has_fired = true
@@ -46,6 +47,7 @@ func shoot(damage: int):
 	new_projectile.team = "enemy"
 	new_projectile.damage = damage
 	add_sibling(new_projectile)
+	$ProjectileSound.play()
 
 func _on_enemy_hitbox_body_entered(body: Node2D) -> void:
 	if body.get("health"):
@@ -66,3 +68,7 @@ func take_damage(damage_amount):
 
 func _on_death_sound_finished() -> void:
 	call_deferred("queue_free")
+
+func _on_animation_player_animation_finished(anim_name: StringName) -> void:
+	if (anim_name == "attack"):
+		$AnimationPlayer.play("walk")

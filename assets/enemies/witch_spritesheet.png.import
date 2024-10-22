@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b43rwyl05jbin"
-path="res://.godot/imported/witch_walk_animation.png-bdedaf9b2d484361c540383c7ea2dc2a.ctex"
+uid="uid://cblsmmmpb44e4"
+path="res://.godot/imported/witch_spritesheet.png-6ecbbf4601fa67bdcd9236585589cb06.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/enemies/witch_walk_animation.png"
-dest_files=["res://.godot/imported/witch_walk_animation.png-bdedaf9b2d484361c540383c7ea2dc2a.ctex"]
+source_file="res://assets/enemies/witch_spritesheet.png"
+dest_files=["res://.godot/imported/witch_spritesheet.png-6ecbbf4601fa67bdcd9236585589cb06.ctex"]
 
 [params]
 
