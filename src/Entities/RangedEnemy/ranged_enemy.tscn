@@ -1,19 +1,57 @@
-[gd_scene load_steps=9 format=3 uid="uid://3k1pyy0hhb37"]
+[gd_scene load_steps=12 format=3 uid="uid://3k1pyy0hhb37"]
 
 [ext_resource type="Script" path="res://src/Entities/RangedEnemy/ranged_enemy.gd" id="1_64dah"]
 [ext_resource type="PackedScene" uid="uid://dbmgqr3qpj6ed" path="res://src/Entities/RangedEnemy/ranged_enemy_projectile.tscn" id="2_3lunk"]
 [ext_resource type="AudioStream" uid="uid://ck34ioocuv7jk" path="res://assets/enemies/enemy_death.wav" id="2_x8f3o"]
 [ext_resource type="AudioStream" uid="uid://c1hrga6n5t1w1" path="res://assets/enemies/enemy_hurt.wav" id="3_jllp4"]
-[ext_resource type="Texture2D" uid="uid://dkee6jwqnvjtj" path="res://assets/enemies/icon.svg" id="3_yen17"]
+[ext_resource type="Texture2D" uid="uid://b43rwyl05jbin" path="res://assets/enemies/witch_walk_animation.png" id="3_owg7c"]
+
+[sub_resource type="Animation" id="Animation_qn4yu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_ojjxr"]
+resource_name = "walk"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xmmmb"]
+_data = {
+"RESET": SubResource("Animation_qn4yu"),
+"walk": SubResource("Animation_ojjxr")
+}
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_afj5g"]
-size = Vector2(120, 118)
+size = Vector2(33, 58)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ppcmg"]
-size = Vector2(20.6667, 20.3333)
+size = Vector2(5.83333, 10)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7sa3o"]
-size = Vector2(30.75, 30.5)
+size = Vector2(8.75, 15)
 
 [node name="RangedEnemy" type="CharacterBody2D"]
 script = ExtResource("1_64dah")
@@ -21,22 +59,33 @@ projectile = ExtResource("2_3lunk")
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("3_yen17")
+position = Vector2(10, 0)
+scale = Vector2(0.12, 0.12)
+texture = ExtResource("3_owg7c")
+hframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xmmmb")
+}
+speed_scale = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 2)
 shape = SubResource("RectangleShape2D_afj5g")
 
 [node name="RangedEnemyHurtBox" type="Area2D" parent="."]
 scale = Vector2(1.5, 1.5)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RangedEnemyHurtBox"]
+position = Vector2(0.333333, 1.33333)
 scale = Vector2(4, 4)
 shape = SubResource("RectangleShape2D_ppcmg")
 
 [node name="RangedEnemyHitbox" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RangedEnemyHitbox"]
-position = Vector2(-0.5, 0)
+position = Vector2(0.5, 2)
 scale = Vector2(4, 4)
 shape = SubResource("RectangleShape2D_7sa3o")
 

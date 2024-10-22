@@ -19,6 +19,7 @@ var team = ""
 
 func _ready() -> void:
 	add_to_group("enemy")
+	$AnimationPlayer.play("walk")
 	
 func _process(_delta: float) -> void:
 	var has_fired = false
@@ -32,6 +33,7 @@ func _process(_delta: float) -> void:
 	
 func _physics_process(delta: float) -> void:
 	velocity = move_speed * delta * (player_character.position - position)
+	$Sprite2D.flip_h = velocity.x > 0
 	move_and_slide()
 
 			
@@ -56,7 +58,7 @@ func take_damage(damage_amount):
 	if (health > 0):
 		$HurtSound.play()
 	elif (health <= 0):
-		# hide()
+		hide()
 		$CollisionShape2D.set_deferred("disabled", true)
 		$RangedEnemyHurtBox/CollisionShape2D.set_deferred("disabled", true)
 		$RangedEnemyHitbox/CollisionShape2D.set_deferred("disabled", true)
