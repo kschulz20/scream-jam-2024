@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://owpaq245hh2l"]
+[gd_scene load_steps=26 format=3 uid="uid://owpaq245hh2l"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1_sla8m"]
 [ext_resource type="PackedScene" uid="uid://q772sl7sx1ey" path="res://src/Entities/Player/player_character.tscn" id="1_wblpv"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://src/Level/music.gd" id="8_t4tgk"]
 [ext_resource type="AudioStream" uid="uid://cf0qun4omg6qy" path="res://assets/level/level_theme_2.wav" id="10_qeps4"]
 [ext_resource type="AudioStream" uid="uid://clx1iuwoxwft0" path="res://assets/level/game_over.wav" id="11_57ee7"]
+[ext_resource type="PackedScene" uid="uid://djikhf04iio02" path="res://src/UI/lives.tscn" id="12_8tmit"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_as4cc"]
 size = Vector2(1964, 19)
@@ -91,6 +92,8 @@ wait_time = 10.0
 
 [node name="UI" type="CanvasLayer" parent="."]
 process_mode = 3
+offset = Vector2(0, 10)
+transform = Transform2D(1, 0, 0, 1, 0, 10)
 script = ExtResource("4_7n45i")
 
 [node name="PauseMenu" type="MarginContainer" parent="UI"]
@@ -188,7 +191,11 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("5_51ljx")
 
+[node name="Lives" parent="UI/HUD" instance=ExtResource("12_8tmit")]
+position = Vector2(-7, 12)
+
 [node name="Health" type="Label" parent="UI/HUD"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0

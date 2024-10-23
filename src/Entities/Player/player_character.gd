@@ -158,7 +158,7 @@ func is_voiceline_playing():
 
 func _on_player_take_damage(damage_amount):
 	health -= damage_amount
-	
+	LivesCounter.lives -= 1
 	if (health <= 0):
 		$Sounds/DeathSound.play()
 	else:

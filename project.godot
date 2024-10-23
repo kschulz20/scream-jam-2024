@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 SignalBus="*res://src/Utils/signal_bus.gd"
+LivesCounter="*res://src/Entities/lives_counter.gd"
 
 [dotnet]
 
