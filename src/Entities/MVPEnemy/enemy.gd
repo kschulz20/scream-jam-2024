@@ -92,7 +92,9 @@ func take_damage(damage_amount):
 	if (health > 0):
 		$Sounds/HurtSound.play()
 	elif (health <= 0):
-		hide()
+		sprite.visible = false
+		$Poof.visible = true
+		$AnimationPlayer.play("poof")
 		$CollisionShape2D.set_deferred("disabled", true)
 		$EnemyHurtBox/CollisionShape2D.set_deferred("disabled", true)
 		$EnemyHitbox/CollisionShape2D.set_deferred("disabled", true)

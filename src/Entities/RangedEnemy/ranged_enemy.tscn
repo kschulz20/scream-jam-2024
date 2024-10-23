@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://3k1pyy0hhb37"]
+[gd_scene load_steps=16 format=3 uid="uid://3k1pyy0hhb37"]
 
 [ext_resource type="Script" path="res://src/Entities/RangedEnemy/ranged_enemy.gd" id="1_64dah"]
 [ext_resource type="PackedScene" uid="uid://dbmgqr3qpj6ed" path="res://src/Entities/RangedEnemy/ranged_enemy_projectile.tscn" id="2_3lunk"]
 [ext_resource type="AudioStream" uid="uid://ck34ioocuv7jk" path="res://assets/enemies/enemy_death.wav" id="2_x8f3o"]
 [ext_resource type="Texture2D" uid="uid://cblsmmmpb44e4" path="res://assets/enemies/witch_spritesheet.png" id="3_1n4ja"]
 [ext_resource type="AudioStream" uid="uid://c1hrga6n5t1w1" path="res://assets/enemies/enemy_hurt.wav" id="3_jllp4"]
+[ext_resource type="Texture2D" uid="uid://bqosv8oy4t1vd" path="res://assets/enemies/poof-spritesheet.png" id="4_gn55a"]
 [ext_resource type="AudioStream" uid="uid://et7n0dtd7ndb" path="res://assets/enemies/witch_projectile_sound.wav" id="6_pwnv5"]
 
 [sub_resource type="Animation" id="Animation_qn4yu"]
@@ -16,6 +17,18 @@ tracks/0/path = NodePath("Sprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Poof:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -55,10 +68,27 @@ tracks/0/keys = {
 "values": [0, 1, 2]
 }
 
+[sub_resource type="Animation" id="Animation_tn47u"]
+resource_name = "poof"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Poof:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xmmmb"]
 _data = {
 "RESET": SubResource("Animation_qn4yu"),
 "attack": SubResource("Animation_h5lqr"),
+"poof": SubResource("Animation_tn47u"),
 "walk": SubResource("Animation_ojjxr")
 }
 
@@ -80,6 +110,13 @@ metadata/_edit_group_ = true
 scale = Vector2(0.12, 0.12)
 texture = ExtResource("3_1n4ja")
 hframes = 6
+
+[node name="Poof" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 7)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_gn55a")
+hframes = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
