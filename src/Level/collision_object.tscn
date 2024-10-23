@@ -16,15 +16,16 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hkjk7"]
 size = Vector2(225, 225)
 
-[node name="RigidBody2D" type="RigidBody2D"]
+[node name="RigidBody2D" type="RigidBody2D" groups=["wall"]]
 position = Vector2(-1, 1)
-collision_mask = 0
+collision_layer = 3
+collision_mask = 3
 gravity_scale = 0.0
 metadata/_edit_group_ = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." groups=["wall"]]
 sprite_frames = SubResource("SpriteFrames_bryll")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["wall"]]
 position = Vector2(-0.5, -0.5)
 shape = SubResource("RectangleShape2D_hkjk7")

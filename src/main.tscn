@@ -186,16 +186,16 @@ script = ExtResource("5_51ljx")
 [node name="Health" type="Label" parent="UI/HUD"]
 layout_mode = 2
 
-[node name="Walls" type="Node" parent="."]
+[node name="Walls" type="Node" parent="." groups=["wall"]]
 
-[node name="WallHouse" type="StaticBody2D" parent="Walls"]
+[node name="WallHouse" type="StaticBody2D" parent="Walls" groups=["wall"]]
 position = Vector2(-164, -803)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallHouse"]
 position = Vector2(166, 228)
 shape = SubResource("RectangleShape2D_as4cc")
 
-[node name="WallCar" type="StaticBody2D" parent="Walls"]
+[node name="WallCar" type="StaticBody2D" parent="Walls" groups=["wall"]]
 position = Vector2(-164, -803)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallCar"]
@@ -204,14 +204,14 @@ rotation = 1.5708
 scale = Vector2(0.986859, 1.06379)
 shape = SubResource("RectangleShape2D_trsg8")
 
-[node name="WallTR1" type="StaticBody2D" parent="Walls"]
+[node name="WallTR1" type="StaticBody2D" parent="Walls" groups=["wall"]]
 position = Vector2(-164, -803)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallTR1"]
 position = Vector2(1081.38, 421.969)
 shape = SubResource("RectangleShape2D_vngow")
 
-[node name="WallTR2" type="StaticBody2D" parent="Walls"]
+[node name="WallTR2" type="StaticBody2D" parent="Walls" groups=["wall"]]
 position = Vector2(-164, -803)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallTR2"]
@@ -219,7 +219,7 @@ position = Vector2(1142, 332.25)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_jkg25")
 
-[node name="WallBR1" type="StaticBody2D" parent="Walls"]
+[node name="WallBR1" type="StaticBody2D" parent="Walls" groups=["wall"]]
 position = Vector2(-169, 253)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallBR1"]
@@ -227,14 +227,14 @@ position = Vector2(1142, 332.25)
 rotation = 1.5708
 shape = SubResource("RectangleShape2D_2mtsh")
 
-[node name="WallBR2" type="StaticBody2D" parent="Walls"]
+[node name="WallBR2" type="StaticBody2D" parent="Walls" groups=["wall"]]
 position = Vector2(-169, 253)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallBR2"]
 position = Vector2(1084, 231)
 shape = SubResource("RectangleShape2D_06n3d")
 
-[node name="WallBR3" type="StaticBody2D" parent="Walls"]
+[node name="WallBR3" type="StaticBody2D" parent="Walls" groups=["wall"]]
 position = Vector2(1078, -682)
 rotation = 1.5708
 
@@ -242,14 +242,14 @@ rotation = 1.5708
 position = Vector2(1084, 231)
 shape = SubResource("RectangleShape2D_72ly0")
 
-[node name="WallStreet" type="StaticBody2D" parent="Walls"]
+[node name="WallStreet" type="StaticBody2D" parent="Walls" groups=["wall"]]
 position = Vector2(-167, 456)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallStreet"]
 position = Vector2(166, 228)
 shape = SubResource("RectangleShape2D_y2v0i")
 
-[node name="WallFence" type="StaticBody2D" parent="Walls"]
+[node name="WallFence" type="StaticBody2D" parent="Walls" groups=["wall"]]
 position = Vector2(-1803, -816)
 scale = Vector2(1.00102, 1.0009)
 
@@ -259,7 +259,7 @@ rotation = 1.5708
 scale = Vector2(0.986859, 1.06379)
 shape = SubResource("RectangleShape2D_hi5jc")
 
-[node name="WallBL1" type="StaticBody2D" parent="Walls"]
+[node name="WallBL1" type="StaticBody2D" parent="Walls" groups=["wall"]]
 position = Vector2(-749, -471)
 rotation = 1.5708
 
@@ -267,14 +267,14 @@ rotation = 1.5708
 position = Vector2(1053.75, 231)
 shape = SubResource("RectangleShape2D_176f4")
 
-[node name="WallBL2" type="StaticBody2D" parent="Walls"]
+[node name="WallBL2" type="StaticBody2D" parent="Walls" groups=["wall"]]
 position = Vector2(-169, 253)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallBL2"]
 position = Vector2(-742, 234)
 shape = SubResource("RectangleShape2D_tvkut")
 
-[node name="WallTL1" type="StaticBody2D" parent="Walls"]
+[node name="WallTL1" type="StaticBody2D" parent="Walls" groups=["wall"]]
 position = Vector2(-750, -1547)
 rotation = 1.5708
 
