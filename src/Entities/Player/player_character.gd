@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var move_speed :float = 1600.0
-@export var health = 2
+@export var health = 3
 @export var projectile :PackedScene = load(
 	"res://src/Entities/Projectile/projectile.tscn"
 )

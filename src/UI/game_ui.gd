@@ -2,6 +2,7 @@ extends CanvasLayer
 
 @onready var pause_menu = get_node("PauseMenu")
 @onready var death_menu = get_node("DeathMenu")
+@onready var hud = get_node("HUD")
 
 @onready var pause_continue_button = get_node("PauseMenu/VBoxContainer/MenuOptions/Continue")
 @onready var death_restart_button = get_node("DeathMenu/VBoxContainer/MenuOptions/Restart")
@@ -19,6 +20,7 @@ func pause():
 	get_tree().paused = true
 	pause_menu.show()
 	death_menu.hide()
+	hud.hide()
 	pause_continue_button.grab_focus()
 	menu_state = PAUSED
 	
@@ -26,12 +28,14 @@ func unpause():
 	get_tree().paused = false
 	pause_menu.hide()
 	death_menu.hide()
+	hud.show()
 	menu_state = RUNNING
 
 func death():
 	get_tree().paused = true
 	pause_menu.hide()
 	death_menu.show()
+	hud.hide()
 	death_restart_button.grab_focus()
 	menu_state = DEAD
 	
@@ -63,6 +67,7 @@ func _on_continue_pressed() -> void:
 
 #endregion
 
-
+#region Death menu buttons
 func _on_player_character_death() -> void:
 	death()
+#endregion
