@@ -56,6 +56,7 @@ alignment = 1
 [node name="Continue" type="Button" parent="UI/PauseMenu/VBoxContainer/MenuOptions"]
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_bottom = NodePath("../Restart")
 theme_override_font_sizes/font_size = 36
 text = "Continue"
 flat = true
@@ -63,6 +64,8 @@ flat = true
 [node name="Restart" type="Button" parent="UI/PauseMenu/VBoxContainer/MenuOptions"]
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../Continue")
+focus_neighbor_bottom = NodePath("../Main Menu")
 theme_override_font_sizes/font_size = 36
 text = "Restart"
 flat = true
@@ -70,6 +73,7 @@ flat = true
 [node name="Main Menu" type="Button" parent="UI/PauseMenu/VBoxContainer/MenuOptions"]
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../Restart")
 theme_override_font_sizes/font_size = 36
 text = "Main Menu"
 flat = true
@@ -102,6 +106,7 @@ alignment = 1
 [node name="Restart" type="Button" parent="UI/DeathMenu/VBoxContainer/MenuOptions"]
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_bottom = NodePath("../Main Menu")
 theme_override_font_sizes/font_size = 36
 text = "Restart"
 flat = true
@@ -109,6 +114,7 @@ flat = true
 [node name="Main Menu" type="Button" parent="UI/DeathMenu/VBoxContainer/MenuOptions"]
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../Restart")
 theme_override_font_sizes/font_size = 36
 text = "Main Menu"
 flat = true

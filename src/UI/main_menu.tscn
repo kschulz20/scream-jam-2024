@@ -8,6 +8,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+focus_neighbor_left = NodePath("VBoxContainer/MenuOptions/Play")
+focus_mode = 2
 theme_override_constants/margin_left = 120
 theme_override_constants/margin_top = 60
 theme_override_constants/margin_right = 120
@@ -32,6 +34,7 @@ alignment = 1
 [node name="Play" type="Button" parent="VBoxContainer/MenuOptions"]
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_bottom = NodePath("../Quit")
 theme_override_font_sizes/font_size = 36
 text = "PLAY"
 flat = true
@@ -39,6 +42,7 @@ flat = true
 [node name="Quit" type="Button" parent="VBoxContainer/MenuOptions"]
 layout_mode = 2
 size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../Play")
 theme_override_font_sizes/font_size = 36
 text = "QUIT"
 flat = true
