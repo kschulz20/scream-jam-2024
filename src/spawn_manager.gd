@@ -8,7 +8,7 @@ var enemy_spawn_list
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$EnemySpawnTimer.start()
-	enemy_spawn_list = [$EnemySpawn1, $EnemySpawn2]
+	enemy_spawn_list = [$EnemySpawn1, $EnemySpawn2, $EnemySpawn3, $EnemySpawn4, $EnemySpawn5, $EnemySpawn6]
 	# Ensure enemies spawn at game start
 	_on_enemy_spawn_timer_timeout()
 
