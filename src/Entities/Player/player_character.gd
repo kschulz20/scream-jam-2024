@@ -16,6 +16,8 @@ var last_melee :float = 0.0
 var player_hitboxes_to_ignore = ["PlayerProjectile", "CaneHitbox"]
 var enemy_hitbox_types = ["MVPEnemyHitbox"]
 
+var voiceline_chance = 25
+
 var player_died = false
 signal death
 
@@ -25,6 +27,7 @@ signal cane_attack(cane_hitbox_vector: Vector2)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	SignalBus.player_take_damage.connect(_on_player_take_damage)
+	SignalBus.witch_moving_toward_player.connect(_on_witch_moving_toward_player)
 	
 func _input(event: InputEvent) -> void:
 	# determine aiming input device
@@ -133,11 +136,39 @@ func shoot(dir: Vector2):
 	new_projectile.position = self.position + (dir * 1.2)
 	new_projectile.team = "player"
 	owner.add_child(new_projectile)
+	
+func is_voiceline_playing():
+	var voicelines = $Voicelines.get_children()
+	
+	var is_playing = false
+	for sound in voicelines:
+		if (sound.is_playing()):
+			is_playing = true
+	return is_playing
 
 func _on_player_take_damage(damage_amount):
 	health -= damage_amount
 	
 	if (health <= 0):
-		$DeathSound.play()
+		$Sounds/DeathSound.play()
 	else:
-		$HurtSound.play()
+		$Sounds/HurtSound.play()
+		$Sounds/OwSound.play()
+
+
+func _on_voiceline_timer_timeout() -> void:
+	if (randi() % 100 <= voiceline_chance):
+		var voiceline = randi() % 3
+		if (not is_voiceline_playing()):
+			match voiceline:
+				0:
+					$Voicelines/TreatsSound.play()
+				1:
+					$Voicelines/TricksSound.play()
+				2:
+					$Voicelines/LawnSound.play()
+
+func _on_witch_moving_toward_player() -> void:
+	if (not is_voiceline_playing()):
+		if (randi() % 100 <= 10):
+			$Voicelines/WitchSound.play()

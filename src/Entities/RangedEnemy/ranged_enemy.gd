@@ -20,10 +20,12 @@ var team = ""
 var random_direction = Vector2.ZERO
 var curr_move_speed = null
 var curr_direction = null
+var detected_for_first_time = false
 
 
 func _ready() -> void:
 	add_to_group("enemy")
+	
 	$AnimationPlayer.play("walk")
 	
 func _process(_delta: float) -> void:
@@ -47,6 +49,11 @@ func _physics_process(delta: float) -> void:
 	elif dist_from_player < enemy_firing_range:
 		curr_direction = (player_character.position - position)
 		curr_move_speed = 0
+		
+		# Voiceline
+		if (not detected_for_first_time):
+			SignalBus.witch_moving_toward_player.emit()
+			detected_for_first_time = true
 	else:
 		curr_move_speed = move_speed
 		curr_direction = (player_character.position - position) 
