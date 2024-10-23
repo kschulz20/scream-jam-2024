@@ -11,7 +11,7 @@ func _physics_process(delta: float) -> void:
 	
 func _on_body_entered(body: Node2D) -> void:
 	if body.get("health"):
-		if (body.is_in_group("enemy")):
+		if (body.is_in_group("enemy")) and speed > 0:
 			body.take_damage(damage)
 			speed = 0
 		elif (body.is_in_group("player")) and speed == 0:
