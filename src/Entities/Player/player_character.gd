@@ -17,6 +17,7 @@ var player_hitboxes_to_ignore = ["PlayerProjectile", "CaneHitbox"]
 var enemy_hitbox_types = ["MVPEnemyHitbox"]
 
 var player_died = false
+signal death
 
 var is_mouse_input = false
 signal cane_attack(cane_hitbox_vector: Vector2)
@@ -71,6 +72,7 @@ func _process(delta: float) -> void:
 		$CollisionShape2D.set_deferred("disabled", true)
 		$AnimatedSprite2D.animation = "death"
 		player_died = true
+		death.emit()
 	# aim input
 	var aim_dir :Vector2 = Vector2(0.0, 0.0)
 	if is_mouse_input:
