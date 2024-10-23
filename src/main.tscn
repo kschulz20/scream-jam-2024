@@ -192,7 +192,7 @@ offset_bottom = 40.0
 script = ExtResource("5_51ljx")
 
 [node name="Lives" parent="UI/HUD" instance=ExtResource("12_8tmit")]
-position = Vector2(-7, 12)
+position = Vector2(-8, -2)
 
 [node name="Health" type="Label" parent="UI/HUD"]
 visible = false
