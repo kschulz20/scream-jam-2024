@@ -1,17 +1,49 @@
-[gd_scene load_steps=4 format=3 uid="uid://dbmgqr3qpj6ed"]
+[gd_scene load_steps=10 format=3 uid="uid://dbmgqr3qpj6ed"]
 
 [ext_resource type="Script" path="res://src/Entities/RangedEnemy/ranged_enemy_projectile.gd" id="1_1ojg1"]
-[ext_resource type="Texture2D" uid="uid://dkee6jwqnvjtj" path="res://assets/enemies/icon.svg" id="2_u0fb3"]
+[ext_resource type="Texture2D" uid="uid://7fdhta0jw6g7" path="res://assets/enemies/witch_projectile_1.png" id="2_xph8e"]
+[ext_resource type="Texture2D" uid="uid://hj1eyss8ctwl" path="res://assets/enemies/witch_projectile_2.png" id="3_m7mws"]
+[ext_resource type="Texture2D" uid="uid://bhvugye6bw5gw" path="res://assets/enemies/witch_projectile_3.png" id="4_l2y1o"]
+[ext_resource type="Texture2D" uid="uid://bgb6s2u0pwasr" path="res://assets/enemies/witch_projectile_4.png" id="5_w65sd"]
+[ext_resource type="Texture2D" uid="uid://dppr302fwkccl" path="res://assets/enemies/witch_projectile_5.png" id="6_ipucj"]
+[ext_resource type="Texture2D" uid="uid://bmj272mk0lcci" path="res://assets/enemies/witch_projectile_0.png" id="7_ehf4o"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_o47by"]
 radius = 7.0
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_ki2vd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_xph8e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_m7mws")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_l2y1o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_w65sd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ipucj")
+}],
+"loop": false,
+"name": &"explosion",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_ehf4o")
+}],
+"loop": true,
+"name": &"fired",
+"speed": 5.0
+}]
+
 [node name="EnemyProjectile" type="Area2D"]
 script = ExtResource("1_1ojg1")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.1, 0.1)
-texture = ExtResource("2_u0fb3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_o47by")
@@ -19,5 +51,13 @@ shape = SubResource("CircleShape2D_o47by")
 [node name="ProjectileLifetime" type="Timer" parent="."]
 wait_time = 4.0
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1.5, 1.5)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_ki2vd")
+animation = &"explosion"
+speed_scale = 10.0
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="ProjectileLifetime" to="." method="_on_projectile_lifetime_timeout"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
