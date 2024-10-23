@@ -1,15 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://b732qgk7gx16v"]
+[gd_scene load_steps=6 format=3 uid="uid://b732qgk7gx16v"]
 
 [ext_resource type="Script" path="res://src/UI/main_menu.gd" id="1_diclq"]
+[ext_resource type="Texture2D" uid="uid://bfmc2g4je82t2" path="res://assets/title/title.png" id="2_sbicu"]
+[ext_resource type="Texture2D" uid="uid://88w5pcka4ihl" path="res://assets/title/play.png" id="2_wef45"]
 [ext_resource type="AudioStream" uid="uid://c3p2fi65512y0" path="res://assets/title/scariatrics-title.wav" id="2_x2ull"]
+[ext_resource type="Texture2D" uid="uid://ckeoxw72ijnbs" path="res://assets/title/quit.png" id="5_i5xfk"]
 
-[node name="MainMenu" type="MarginContainer"]
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-focus_neighbor_left = NodePath("VBoxContainer/MenuOptions/Play")
+color = Color(0.0706356, 0.0358314, 0.0508782, 1)
+
+[node name="MainMenu" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 23.0
+offset_top = -9.0
+offset_right = 81.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_neighbor_left = NodePath("../Play")
 focus_mode = 2
 theme_override_constants/margin_left = 120
 theme_override_constants/margin_top = 60
@@ -17,40 +34,63 @@ theme_override_constants/margin_right = 120
 theme_override_constants/margin_bottom = 60
 script = ExtResource("1_diclq")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenu"]
+layout_direction = 1
 layout_mode = 2
 
-[node name="Title" type="Label" parent="VBoxContainer"]
+[node name="Title" type="Label" parent="MainMenu/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 72
-text = "Scariatrics"
 horizontal_alignment = 1
 
-[node name="MenuOptions" type="VBoxContainer" parent="VBoxContainer"]
+[node name="MenuOptions" type="VBoxContainer" parent="MainMenu/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 5
 alignment = 1
 
-[node name="Play" type="Button" parent="VBoxContainer/MenuOptions"]
-layout_mode = 2
-size_flags_horizontal = 4
-focus_neighbor_bottom = NodePath("../Quit")
-theme_override_font_sizes/font_size = 36
-text = "PLAY"
-flat = true
-
-[node name="Quit" type="Button" parent="VBoxContainer/MenuOptions"]
-layout_mode = 2
-size_flags_horizontal = 4
-focus_neighbor_top = NodePath("../Play")
-theme_override_font_sizes/font_size = 36
-text = "QUIT"
-flat = true
-
-[node name="TitleMusic" type="AudioStreamPlayer" parent="."]
+[node name="TitleMusic" type="AudioStreamPlayer" parent="MainMenu"]
 stream = ExtResource("2_x2ull")
 autoplay = true
 
-[connection signal="pressed" from="VBoxContainer/MenuOptions/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="VBoxContainer/MenuOptions/Quit" to="." method="_on_quit_pressed"]
+[node name="TitleTexture" type="TextureRect" parent="MainMenu"]
+layout_mode = 2
+texture = ExtResource("2_sbicu")
+expand_mode = 3
+
+[node name="PlayTexture" type="TextureRect" parent="MainMenu"]
+layout_mode = 2
+texture = ExtResource("2_wef45")
+expand_mode = 3
+
+[node name="QuitTexture" type="TextureRect" parent="MainMenu"]
+layout_mode = 2
+texture = ExtResource("5_i5xfk")
+expand_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="MainMenu"]
+layout_mode = 2
+
+[node name="Play" type="Button" parent="."]
+offset_left = 505.0
+offset_top = 292.0
+offset_right = 713.0
+offset_bottom = 397.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+focus_neighbor_bottom = NodePath("../Quit")
+theme_override_font_sizes/font_size = 36
+flat = true
+
+[node name="Quit" type="Button" parent="."]
+offset_left = 505.0
+offset_top = 413.0
+offset_right = 714.0
+offset_bottom = 511.0
+size_flags_horizontal = 4
+focus_neighbor_top = NodePath("../Play")
+theme_override_font_sizes/font_size = 36
+flat = true
+
+[connection signal="pressed" from="Play" to="MainMenu" method="_on_play_pressed"]
+[connection signal="pressed" from="Quit" to="MainMenu" method="_on_quit_pressed"]

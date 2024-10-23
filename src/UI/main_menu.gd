@@ -1,6 +1,6 @@
 extends Control
 
-@onready var play_button = get_node("VBoxContainer/MenuOptions/Play")
+@onready var play_button = get_node("../Play")
 
 func _ready():
 	play_button.grab_focus()
