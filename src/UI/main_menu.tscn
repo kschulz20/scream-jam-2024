@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b732qgk7gx16v"]
+[gd_scene load_steps=3 format=3 uid="uid://b732qgk7gx16v"]
 
 [ext_resource type="Script" path="res://src/UI/main_menu.gd" id="1_diclq"]
+[ext_resource type="AudioStream" uid="uid://c3p2fi65512y0" path="res://assets/title/scariatrics-title.wav" id="2_x2ull"]
 
 [node name="MainMenu" type="MarginContainer"]
 anchors_preset = 15
@@ -46,6 +47,10 @@ focus_neighbor_top = NodePath("../Play")
 theme_override_font_sizes/font_size = 36
 text = "QUIT"
 flat = true
+
+[node name="TitleMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_x2ull")
+autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/MenuOptions/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/MenuOptions/Quit" to="." method="_on_quit_pressed"]

@@ -183,23 +183,23 @@ stream = ExtResource("11_qo5sm")
 
 [node name="LawnSound" type="AudioStreamPlayer" parent="Voicelines"]
 stream = ExtResource("11_cc0un")
-volume_db = 7.0
+volume_db = 8.0
 
 [node name="TricksSound" type="AudioStreamPlayer" parent="Voicelines"]
 stream = ExtResource("12_rjiir")
-volume_db = 7.0
+volume_db = 8.0
 
 [node name="TreatsSound" type="AudioStreamPlayer" parent="Voicelines"]
 stream = ExtResource("13_5ysdx")
-volume_db = 7.0
+volume_db = 8.0
 
 [node name="WitchSound" type="AudioStreamPlayer" parent="Voicelines"]
 stream = ExtResource("14_njkiw")
-volume_db = 7.0
+volume_db = 8.0
 
 [node name="GhostSound" type="AudioStreamPlayer" parent="Voicelines"]
 stream = ExtResource("15_533hk")
-volume_db = 7.0
+volume_db = 9.0
 
 [node name="NewspaperSound" type="AudioStreamPlayer" parent="Voicelines"]
 stream = ExtResource("16_6ud13")
