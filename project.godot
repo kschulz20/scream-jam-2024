@@ -28,6 +28,7 @@ project/assembly_name="scream_jam"
 hurtbox=""
 player=""
 enemy=""
+wall=""
 
 [input]
 

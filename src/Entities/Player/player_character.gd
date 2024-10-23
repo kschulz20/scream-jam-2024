@@ -9,6 +9,7 @@ extends CharacterBody2D
 @export var fire_rate :float = 1.5
 var last_projectile_fired :float = 0.0
 var is_firing = false
+var holding_projectile = true
 
 @export var melee_rate :float = 1.0
 var last_melee :float = 0.0
@@ -102,9 +103,10 @@ func _process(delta: float) -> void:
 			is_firing = true
 		if (Input.is_action_just_released("range_attack")):
 			is_firing = false
-		if is_firing and last_projectile_fired <= 0.0:
+		if is_firing and last_projectile_fired <= 0.0 and holding_projectile:
 			shoot(aim_dir)
 			last_projectile_fired = 1.0 / (fire_rate)
+			holding_projectile = false
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
@@ -130,7 +132,7 @@ func melee(aim_dir :Vector2):
 func shoot(dir: Vector2):
 	var new_projectile = projectile.instantiate()
 	new_projectile.heading = dir
-	new_projectile.position = self.position + (dir * 1.2)
+	new_projectile.position = self.position  + (dir * 1.2)
 	new_projectile.team = "player"
 	owner.add_child(new_projectile)
 
