@@ -332,6 +332,7 @@ volume_db = -9.0
 
 [node name="GameOverMusic" type="AudioStreamPlayer" parent="LevelMusic"]
 stream = ExtResource("11_57ee7")
+volume_db = -5.0
 
 [connection signal="death" from="PlayerCharacter" to="UI" method="_on_player_character_death"]
 [connection signal="timeout" from="SpawnManager/EnemySpawnTimer" to="SpawnManager" method="_on_enemy_spawn_timer_timeout"]

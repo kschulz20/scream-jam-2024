@@ -1,7 +1,46 @@
-[gd_scene load_steps=4 format=3 uid="uid://cnvnjq8lou2ef"]
+[gd_scene load_steps=12 format=3 uid="uid://cnvnjq8lou2ef"]
 
 [ext_resource type="Script" path="res://src/Entities/Projectile/projectile.gd" id="1_lxhs6"]
-[ext_resource type="Texture2D" uid="uid://bj7l42iw8ukom" path="res://assets/player/icon.svg" id="2_d01vg"]
+[ext_resource type="Texture2D" uid="uid://cgck47rmt61mn" path="res://assets/player/newspaper_sprites/newspaper1.PNG" id="2_kwevs"]
+[ext_resource type="Texture2D" uid="uid://bsad50f2yvn1x" path="res://assets/player/newspaper_sprites/newspaper2.PNG" id="3_hto8t"]
+[ext_resource type="Texture2D" uid="uid://3mvpejfdc4ge" path="res://assets/player/newspaper_sprites/newspaper3.PNG" id="4_llbkk"]
+[ext_resource type="Texture2D" uid="uid://c8wfm0fkb1cqi" path="res://assets/player/newspaper_sprites/newspaper4.PNG" id="5_g3d7n"]
+[ext_resource type="Texture2D" uid="uid://bpseui3ipr4nx" path="res://assets/player/newspaper_sprites/newspaper5.PNG" id="6_updea"]
+[ext_resource type="Texture2D" uid="uid://cmm7haquew0nk" path="res://assets/player/newspaper_sprites/newspaper6.PNG" id="7_ogr1h"]
+[ext_resource type="Texture2D" uid="uid://ckc4e4ak4dxkd" path="res://assets/player/newspaper_sprites/newspaper7.PNG" id="8_onot5"]
+[ext_resource type="Texture2D" uid="uid://ck6ff6t7rtwg4" path="res://assets/player/newspaper_sprites/newspaper8.PNG" id="9_aesx0"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hcn1d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_kwevs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_hto8t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_llbkk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_g3d7n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_updea")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ogr1h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_onot5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_aesx0")
+}],
+"loop": true,
+"name": &"throw",
+"speed": 5.0
+}]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0jaxg"]
 radius = 18.5715
@@ -11,12 +50,14 @@ position = Vector2(570, 451)
 collision_layer = 2
 script = ExtResource("1_lxhs6")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+scale = Vector2(2.25, 2.25)
+sprite_frames = SubResource("SpriteFrames_hcn1d")
+animation = &"throw"
+speed_scale = 2.0
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(0.7, 0.7)
 shape = SubResource("CircleShape2D_0jaxg")
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.205, 0.205)
-texture = ExtResource("2_d01vg")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
