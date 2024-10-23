@@ -39,6 +39,11 @@ func death():
 	death_restart_button.grab_focus()
 	menu_state = DEAD
 	
+	var death_sound = get_tree().root.find_child("DeathSound", true, false)
+	death_sound.play()
+	var game_over_music = get_tree().root.find_child("GameOverMusic", true, false)
+	game_over_music.play()
+	
 func _ready():
 	menu_state = RUNNING
 
