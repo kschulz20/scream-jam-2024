@@ -10,3 +10,5 @@ signal witch_moving_toward_player()
 signal ghost_moving_toward_player()
 
 signal newspaper_picked_up()
+
+signal increase_score()

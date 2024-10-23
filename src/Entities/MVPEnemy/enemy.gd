@@ -99,6 +99,8 @@ func take_damage(damage_amount):
 		$EnemyHurtBox/CollisionShape2D.set_deferred("disabled", true)
 		$EnemyHitbox/CollisionShape2D.set_deferred("disabled", true)
 		$Sounds/DeathSound.play()
+		
+		SignalBus.increase_score.emit()
 
 func _on_death_sound_finished() -> void:
 	call_deferred("queue_free")
