@@ -1,7 +1,7 @@
 extends Area2D
 
 @export var damage = 2;
-var speed = 300
+var speed = 500
 var heading :Vector2 = Vector2(1.0, 0.0)
 var team = ""
 
