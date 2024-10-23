@@ -15,6 +15,7 @@ func _on_body_entered(body: Node2D) -> void:
 			body.take_damage(damage)
 			speed = 0
 		elif (body.is_in_group("player")) and speed == 0:
+			SignalBus.newspaper_picked_up.emit()
 			self.queue_free()
 			body.holding_projectile = true
 	if(body.is_in_group("wall")):

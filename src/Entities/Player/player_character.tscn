@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://q772sl7sx1ey"]
+[gd_scene load_steps=24 format=3 uid="uid://q772sl7sx1ey"]
 
 [ext_resource type="Script" path="res://src/Entities/Player/player_character.gd" id="1_dbouk"]
 [ext_resource type="Texture2D" uid="uid://dvh2qysixkw8v" path="res://assets/player/man-death.png" id="2_rjjhn"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://bcjfx3tbae23n" path="res://assets/player/cane-90-spritesheet.png" id="7_f6nj3"]
 [ext_resource type="AudioStream" uid="uid://ddh5gnfq1ml6y" path="res://assets/player/ow.wav" id="10_pd2ed"]
 [ext_resource type="AudioStream" uid="uid://cr05g10bdptd1" path="res://assets/player/lawn.wav" id="11_cc0un"]
+[ext_resource type="AudioStream" uid="uid://bebs37pprpbbq" path="res://assets/player/newspaper-pickup.wav" id="11_qo5sm"]
 [ext_resource type="AudioStream" uid="uid://tfe72l485tkv" path="res://assets/player/no_tricks.wav" id="12_rjiir"]
 [ext_resource type="AudioStream" uid="uid://uef56xfdtaut" path="res://assets/player/no_treats.wav" id="13_5ysdx"]
 [ext_resource type="AudioStream" uid="uid://c76acbhqvb86p" path="res://assets/player/witch.wav" id="14_njkiw"]
@@ -174,6 +175,9 @@ volume_db = -3.0
 [node name="OwSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("10_pd2ed")
 volume_db = 3.0
+
+[node name="NewspaperPickupSound" type="AudioStreamPlayer" parent="Sounds"]
+stream = ExtResource("11_qo5sm")
 
 [node name="Voicelines" type="Node" parent="."]
 

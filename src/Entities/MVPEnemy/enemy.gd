@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
-const GHOST_HEALTH = 2
-const PUMPKIN_HEALTH = 4
+const GHOST_HEALTH = 4
+const PUMPKIN_HEALTH = 6
 
 const GHOST_MOVE_SPEED = 40
 const PUMPKIN_MOVE_SPEED = 20

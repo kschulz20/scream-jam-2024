@@ -32,6 +32,7 @@ func _ready() -> void:
 	SignalBus.player_take_damage.connect(_on_player_take_damage)
 	SignalBus.witch_moving_toward_player.connect(_on_witch_moving_toward_player)
 	SignalBus.ghost_moving_toward_player.connect(_on_ghost_moving_toward_player)
+	SignalBus.newspaper_picked_up.connect(_on_newspaper_picked_up)
 	
 func _input(event: InputEvent) -> void:
 	# determine aiming input device
@@ -188,3 +189,6 @@ func _on_witch_moving_toward_player() -> void:
 
 func _on_ghost_moving_toward_player() -> void:
 	play_enemy_detected_voiceline($Voicelines/GhostSound)
+	
+func _on_newspaper_picked_up() -> void:
+	$Sounds/NewspaperPickupSound.play()
