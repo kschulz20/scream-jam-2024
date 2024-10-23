@@ -14,7 +14,37 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.0618365, 0.00151995, 0.00445866, 1)
+color = Color(0.0425989, 0.000544654, 0.00157474, 1)
+
+[node name="TitleTexture" type="TextureRect" parent="."]
+offset_left = 143.0
+offset_top = 51.0
+offset_right = 1113.0
+offset_bottom = 587.0
+texture = ExtResource("2_sbicu")
+expand_mode = 3
+
+[node name="PlayTexture" type="TextureRect" parent="."]
+offset_left = 143.0
+offset_top = 51.0
+offset_right = 1113.0
+offset_bottom = 587.0
+texture = ExtResource("2_wef45")
+expand_mode = 3
+
+[node name="QuitTexture" type="TextureRect" parent="."]
+offset_left = 143.0
+offset_top = 51.0
+offset_right = 1113.0
+offset_bottom = 587.0
+texture = ExtResource("5_i5xfk")
+expand_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 143.0
+offset_top = 51.0
+offset_right = 1113.0
+offset_bottom = 587.0
 
 [node name="MainMenu" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -52,24 +82,6 @@ alignment = 1
 [node name="TitleMusic" type="AudioStreamPlayer" parent="MainMenu"]
 stream = ExtResource("2_x2ull")
 autoplay = true
-
-[node name="TitleTexture" type="TextureRect" parent="MainMenu"]
-layout_mode = 2
-texture = ExtResource("2_sbicu")
-expand_mode = 3
-
-[node name="PlayTexture" type="TextureRect" parent="MainMenu"]
-layout_mode = 2
-texture = ExtResource("2_wef45")
-expand_mode = 3
-
-[node name="QuitTexture" type="TextureRect" parent="MainMenu"]
-layout_mode = 2
-texture = ExtResource("5_i5xfk")
-expand_mode = 3
-
-[node name="TextureRect" type="TextureRect" parent="MainMenu"]
-layout_mode = 2
 
 [node name="Play" type="Button" parent="."]
 offset_left = 505.0
