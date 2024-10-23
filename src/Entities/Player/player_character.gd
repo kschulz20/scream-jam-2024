@@ -16,7 +16,9 @@ var last_melee :float = 0.0
 var player_hitboxes_to_ignore = ["PlayerProjectile", "CaneHitbox"]
 var enemy_hitbox_types = ["MVPEnemyHitbox"]
 
-var voiceline_chance = 25
+var unconditional_voiceline_chance = 25
+var enemy_detected_voiceline_chance = 10
+var newspaper_voiceline_chance = 20
 
 var player_died = false
 signal death
@@ -28,6 +30,7 @@ signal cane_attack(cane_hitbox_vector: Vector2)
 func _ready() -> void:
 	SignalBus.player_take_damage.connect(_on_player_take_damage)
 	SignalBus.witch_moving_toward_player.connect(_on_witch_moving_toward_player)
+	SignalBus.ghost_moving_toward_player.connect(_on_ghost_moving_toward_player)
 	
 func _input(event: InputEvent) -> void:
 	# determine aiming input device
@@ -137,6 +140,10 @@ func shoot(dir: Vector2):
 	new_projectile.team = "player"
 	owner.add_child(new_projectile)
 	
+	if (not is_voiceline_playing()):
+		if (randi() % 100 <= newspaper_voiceline_chance):
+			$Voicelines/NewspaperSound.play()
+
 func is_voiceline_playing():
 	var voicelines = $Voicelines.get_children()
 	
@@ -155,9 +162,9 @@ func _on_player_take_damage(damage_amount):
 		$Sounds/HurtSound.play()
 		$Sounds/OwSound.play()
 
-
+# Voicelines randomly said regardless of what's happening
 func _on_voiceline_timer_timeout() -> void:
-	if (randi() % 100 <= voiceline_chance):
+	if (randi() % 100 <= unconditional_voiceline_chance):
 		var voiceline = randi() % 3
 		if (not is_voiceline_playing()):
 			match voiceline:
@@ -168,7 +175,14 @@ func _on_voiceline_timer_timeout() -> void:
 				2:
 					$Voicelines/LawnSound.play()
 
+func play_enemy_detected_voiceline(sound) -> void:
+		if (not is_voiceline_playing()):
+			if (randi() % 100 <= enemy_detected_voiceline_chance):
+				sound.play()
+
+# "I'll knock that witch hat right off ya" voiceline logic
 func _on_witch_moving_toward_player() -> void:
-	if (not is_voiceline_playing()):
-		if (randi() % 100 <= 10):
-			$Voicelines/WitchSound.play()
+	play_enemy_detected_voiceline($Voicelines/WitchSound)
+
+func _on_ghost_moving_toward_player() -> void:
+	play_enemy_detected_voiceline($Voicelines/GhostSound)

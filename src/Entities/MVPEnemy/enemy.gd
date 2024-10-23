@@ -18,6 +18,8 @@ const random_stop_movement_freq = 100
 @onready var player_character = get_tree().root.find_child("PlayerCharacter", true, false)
 
 var sprite
+var is_ghost = false
+var detected_for_first_time = false
 var team = ""
 var random_direction = Vector2.ZERO
 var curr_move_speed = null
@@ -40,6 +42,12 @@ func _physics_process(delta: float) -> void:
 	else:
 		curr_move_speed = move_speed
 		curr_direction = (player_character.position - position) 
+		
+		# Ghost voiceline
+		if (is_ghost):
+			if (not detected_for_first_time):
+				SignalBus.ghost_moving_toward_player.emit()
+				detected_for_first_time = true
 	velocity = curr_move_speed * delta * curr_direction
 	
 	sprite.play()
@@ -68,6 +76,8 @@ func set_type(type: String):
 			sprite = $GhostSprite
 			sprite.visible = true
 			$PumpkinSprite.visible = false
+			
+			is_ghost = true
 		_:
 			print("Enemy didn't receive a type upon instantiation")
 
@@ -80,13 +90,13 @@ func take_damage(damage_amount):
 	health -= damage_amount
 	
 	if (health > 0):
-		$HurtSound.play()
+		$Sounds/HurtSound.play()
 	elif (health <= 0):
 		hide()
 		$CollisionShape2D.set_deferred("disabled", true)
 		$EnemyHurtBox/CollisionShape2D.set_deferred("disabled", true)
 		$EnemyHitbox/CollisionShape2D.set_deferred("disabled", true)
-		$DeathSound.play()
+		$Sounds/DeathSound.play()
 
 func _on_death_sound_finished() -> void:
 	call_deferred("queue_free")

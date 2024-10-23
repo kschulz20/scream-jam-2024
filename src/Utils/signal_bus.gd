@@ -6,3 +6,5 @@ extends Node
 signal player_take_damage(damage_amount)
 
 signal witch_moving_toward_player()
+
+signal ghost_moving_toward_player()

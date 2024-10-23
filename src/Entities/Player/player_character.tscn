@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://q772sl7sx1ey"]
+[gd_scene load_steps=23 format=3 uid="uid://q772sl7sx1ey"]
 
 [ext_resource type="Script" path="res://src/Entities/Player/player_character.gd" id="1_dbouk"]
 [ext_resource type="Texture2D" uid="uid://dvh2qysixkw8v" path="res://assets/player/man-death.png" id="2_rjjhn"]
@@ -14,6 +14,8 @@
 [ext_resource type="AudioStream" uid="uid://tfe72l485tkv" path="res://assets/player/no_tricks.wav" id="12_rjiir"]
 [ext_resource type="AudioStream" uid="uid://uef56xfdtaut" path="res://assets/player/no_treats.wav" id="13_5ysdx"]
 [ext_resource type="AudioStream" uid="uid://c76acbhqvb86p" path="res://assets/player/witch.wav" id="14_njkiw"]
+[ext_resource type="AudioStream" uid="uid://dl0r72nclmq2m" path="res://assets/player/darn_ghosts.wav" id="15_533hk"]
+[ext_resource type="AudioStream" uid="uid://ba16wh7q6k8yw" path="res://assets/player/newspaper.wav" id="16_6ud13"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_110rp"]
 animations = [{
@@ -189,6 +191,14 @@ volume_db = 3.0
 
 [node name="WitchSound" type="AudioStreamPlayer" parent="Voicelines"]
 stream = ExtResource("14_njkiw")
+volume_db = 3.0
+
+[node name="GhostSound" type="AudioStreamPlayer" parent="Voicelines"]
+stream = ExtResource("15_533hk")
+volume_db = 3.0
+
+[node name="NewspaperSound" type="AudioStreamPlayer" parent="Voicelines"]
+stream = ExtResource("16_6ud13")
 volume_db = 3.0
 
 [node name="VoicelineTimer" type="Timer" parent="."]
