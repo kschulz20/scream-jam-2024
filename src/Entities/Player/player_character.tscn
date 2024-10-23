@@ -174,7 +174,7 @@ volume_db = -3.0
 
 [node name="OwSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("10_pd2ed")
-volume_db = 3.0
+volume_db = 5.0
 
 [node name="NewspaperPickupSound" type="AudioStreamPlayer" parent="Sounds"]
 stream = ExtResource("11_qo5sm")
@@ -183,27 +183,27 @@ stream = ExtResource("11_qo5sm")
 
 [node name="LawnSound" type="AudioStreamPlayer" parent="Voicelines"]
 stream = ExtResource("11_cc0un")
-volume_db = 3.0
+volume_db = 7.0
 
 [node name="TricksSound" type="AudioStreamPlayer" parent="Voicelines"]
 stream = ExtResource("12_rjiir")
-volume_db = 3.0
+volume_db = 7.0
 
 [node name="TreatsSound" type="AudioStreamPlayer" parent="Voicelines"]
 stream = ExtResource("13_5ysdx")
-volume_db = 3.0
+volume_db = 7.0
 
 [node name="WitchSound" type="AudioStreamPlayer" parent="Voicelines"]
 stream = ExtResource("14_njkiw")
-volume_db = 3.0
+volume_db = 7.0
 
 [node name="GhostSound" type="AudioStreamPlayer" parent="Voicelines"]
 stream = ExtResource("15_533hk")
-volume_db = 3.0
+volume_db = 7.0
 
 [node name="NewspaperSound" type="AudioStreamPlayer" parent="Voicelines"]
 stream = ExtResource("16_6ud13")
-volume_db = 3.0
+volume_db = 7.0
 
 [node name="VoicelineTimer" type="Timer" parent="."]
 wait_time = 6.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://owpaq245hh2l"]
+[gd_scene load_steps=24 format=3 uid="uid://owpaq245hh2l"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1_sla8m"]
 [ext_resource type="PackedScene" uid="uid://q772sl7sx1ey" path="res://src/Entities/Player/player_character.tscn" id="1_wblpv"]
@@ -7,6 +7,9 @@
 [ext_resource type="Script" path="res://src/spawn_manager.gd" id="4_k52d0"]
 [ext_resource type="Script" path="res://src/UI/hud.gd" id="5_51ljx"]
 [ext_resource type="Script" path="res://src/UI/hud_2.gd" id="7_p53ph"]
+[ext_resource type="AudioStream" uid="uid://catmm24fhjj6v" path="res://assets/level/level_theme_1.wav" id="8_magaw"]
+[ext_resource type="Script" path="res://src/Level/music.gd" id="8_t4tgk"]
+[ext_resource type="AudioStream" uid="uid://cf0qun4omg6qy" path="res://assets/level/level_theme_2.wav" id="10_qeps4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_as4cc"]
 size = Vector2(1964, 19)
@@ -314,6 +317,17 @@ rotation = 1.5708
 position = Vector2(1151.82, 174.669)
 rotation = -1.31598
 shape = SubResource("RectangleShape2D_g170g")
+
+[node name="LevelMusic" type="Node" parent="."]
+script = ExtResource("8_t4tgk")
+
+[node name="LevelTheme1" type="AudioStreamPlayer" parent="LevelMusic"]
+stream = ExtResource("8_magaw")
+volume_db = -9.0
+
+[node name="LevelTheme2" type="AudioStreamPlayer" parent="LevelMusic"]
+stream = ExtResource("10_qeps4")
+volume_db = -9.0
 
 [connection signal="death" from="PlayerCharacter" to="UI" method="_on_player_character_death"]
 [connection signal="timeout" from="SpawnManager/EnemySpawnTimer" to="SpawnManager" method="_on_enemy_spawn_timer_timeout"]
