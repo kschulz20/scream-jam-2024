@@ -1,16 +1,61 @@
-[gd_scene load_steps=6 format=3 uid="uid://owpaq245hh2l"]
+[gd_scene load_steps=20 format=3 uid="uid://owpaq245hh2l"]
 
 [ext_resource type="Script" path="res://src/main.gd" id="1_sla8m"]
 [ext_resource type="PackedScene" uid="uid://q772sl7sx1ey" path="res://src/Entities/Player/player_character.tscn" id="1_wblpv"]
+[ext_resource type="Texture2D" uid="uid://ch3eflyfy5bem" path="res://assets/level/background.PNG" id="2_80eai"]
 [ext_resource type="Script" path="res://src/UI/game_ui.gd" id="4_7n45i"]
 [ext_resource type="Script" path="res://src/spawn_manager.gd" id="4_k52d0"]
 [ext_resource type="Script" path="res://src/UI/hud.gd" id="5_51ljx"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_as4cc"]
+size = Vector2(1964, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_trsg8"]
+size = Vector2(754, 23.875)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vngow"]
+size = Vector2(166.75, 19.9375)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jkg25"]
+size = Vector2(208.5, 23.875)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2mtsh"]
+size = Vector2(208.5, 23.875)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_06n3d"]
+size = Vector2(139, 23.875)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_72ly0"]
+size = Vector2(139, 23.875)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y2v0i"]
+size = Vector2(1964, 19)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hi5jc"]
+size = Vector2(897.324, 22.2655)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_176f4"]
+size = Vector2(199.5, 23.875)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tvkut"]
+size = Vector2(139, 23.875)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4vh55"]
+size = Vector2(199.5, 23.875)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g170g"]
+size = Vector2(153.348, 23.875)
+
 [node name="Main" type="Node"]
 script = ExtResource("1_sla8m")
 
+[node name="Background" type="Sprite2D" parent="."]
+scale = Vector2(3, 3)
+texture = ExtResource("2_80eai")
+
 [node name="PlayerCharacter" parent="." instance=ExtResource("1_wblpv")]
 unique_name_in_owner = true
+position = Vector2(0, 0)
 move_speed = 20000.0
 
 [node name="Enemies" type="Node" parent="."]
@@ -19,9 +64,10 @@ move_speed = 20000.0
 script = ExtResource("4_k52d0")
 
 [node name="EnemySpawn1" type="Marker2D" parent="SpawnManager"]
+position = Vector2(-823, -466)
 
 [node name="EnemySpawn2" type="Marker2D" parent="SpawnManager"]
-position = Vector2(1153, 3)
+position = Vector2(864, -465)
 
 [node name="EnemySpawnTimer" type="Timer" parent="SpawnManager"]
 wait_time = 10.0
@@ -127,6 +173,111 @@ script = ExtResource("5_51ljx")
 
 [node name="Health" type="Label" parent="UI/HUD"]
 layout_mode = 2
+
+[node name="Walls" type="Node" parent="."]
+
+[node name="WallHouse" type="StaticBody2D" parent="Walls"]
+position = Vector2(-164, -803)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallHouse"]
+position = Vector2(166, 228)
+shape = SubResource("RectangleShape2D_as4cc")
+
+[node name="WallCar" type="StaticBody2D" parent="Walls"]
+position = Vector2(-164, -803)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallCar"]
+position = Vector2(986, 802)
+rotation = 1.5708
+scale = Vector2(0.986859, 1.06379)
+shape = SubResource("RectangleShape2D_trsg8")
+
+[node name="WallTR1" type="StaticBody2D" parent="Walls"]
+position = Vector2(-164, -803)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallTR1"]
+position = Vector2(1081.38, 421.969)
+shape = SubResource("RectangleShape2D_vngow")
+
+[node name="WallTR2" type="StaticBody2D" parent="Walls"]
+position = Vector2(-164, -803)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallTR2"]
+position = Vector2(1142, 332.25)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_jkg25")
+
+[node name="WallBR1" type="StaticBody2D" parent="Walls"]
+position = Vector2(-169, 253)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallBR1"]
+position = Vector2(1142, 332.25)
+rotation = 1.5708
+shape = SubResource("RectangleShape2D_2mtsh")
+
+[node name="WallBR2" type="StaticBody2D" parent="Walls"]
+position = Vector2(-169, 253)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallBR2"]
+position = Vector2(1084, 231)
+shape = SubResource("RectangleShape2D_06n3d")
+
+[node name="WallBR3" type="StaticBody2D" parent="Walls"]
+position = Vector2(1078, -682)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallBR3"]
+position = Vector2(1084, 231)
+shape = SubResource("RectangleShape2D_72ly0")
+
+[node name="WallStreet" type="StaticBody2D" parent="Walls"]
+position = Vector2(-167, 456)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallStreet"]
+position = Vector2(166, 228)
+shape = SubResource("RectangleShape2D_y2v0i")
+
+[node name="WallFence" type="StaticBody2D" parent="Walls"]
+position = Vector2(-1803, -816)
+scale = Vector2(1.00102, 1.0009)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallFence"]
+position = Vector2(966.018, 871.051)
+rotation = 1.5708
+scale = Vector2(0.986859, 1.06379)
+shape = SubResource("RectangleShape2D_hi5jc")
+
+[node name="WallBL1" type="StaticBody2D" parent="Walls"]
+position = Vector2(-749, -471)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallBL1"]
+position = Vector2(1053.75, 231)
+shape = SubResource("RectangleShape2D_176f4")
+
+[node name="WallBL2" type="StaticBody2D" parent="Walls"]
+position = Vector2(-169, 253)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallBL2"]
+position = Vector2(-742, 234)
+shape = SubResource("RectangleShape2D_tvkut")
+
+[node name="WallTL1" type="StaticBody2D" parent="Walls"]
+position = Vector2(-750, -1547)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallTL1"]
+position = Vector2(1053.75, 231)
+shape = SubResource("RectangleShape2D_4vh55")
+
+[node name="WallTL2" type="StaticBody2D" parent="Walls"]
+position = Vector2(-750, -1547)
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Walls/WallTL2"]
+position = Vector2(1151.82, 174.669)
+rotation = -1.31598
+shape = SubResource("RectangleShape2D_g170g")
 
 [connection signal="death" from="PlayerCharacter" to="UI" method="_on_player_character_death"]
 [connection signal="timeout" from="SpawnManager/EnemySpawnTimer" to="SpawnManager" method="_on_enemy_spawn_timer_timeout"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cm7u7icysp3s0"
-path="res://.godot/imported/spawn.png-2b71259ec1fb418a1363ec83383d8347.ctex"
+uid="uid://ch3eflyfy5bem"
+path="res://.godot/imported/background.PNG-6d4d969059aa2dd4b1a41d509aa05a2f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/level/spawn.png"
-dest_files=["res://.godot/imported/spawn.png-2b71259ec1fb418a1363ec83383d8347.ctex"]
+source_file="res://assets/level/background.PNG"
+dest_files=["res://.godot/imported/background.PNG-6d4d969059aa2dd4b1a41d509aa05a2f.ctex"]
 
 [params]
 

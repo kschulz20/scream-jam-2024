@@ -113,6 +113,10 @@ script = ExtResource("1_dbouk")
 metadata/_edit_group_ = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
+limit_left = -970
+limit_top = -688
+limit_right = 970
+limit_bottom = 688
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_110rp")
