@@ -14,7 +14,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.0706356, 0.0358314, 0.0508782, 1)
+color = Color(0.0618365, 0.00151995, 0.00445866, 1)
 
 [node name="MainMenu" type="MarginContainer" parent="."]
 anchors_preset = 15
