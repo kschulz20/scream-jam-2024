@@ -6,11 +6,11 @@
 - Febduni (art)
 - Ibrahima Keita (game design, music, programming)
 - Kyler Schulz (game design, music, programming)
-- Miranda Zhang (art)
+- Miranda Zhang (art, game design)
 - Nikita Singh (art, game design)
 - Pablo Castilla (game design)
 - Yi Wei (game design, programming)
-- Yuval Shechter (art, game design)
+- Yuval Shechter (art, game design, voice acting)
 
 ## Internal documentation
 
